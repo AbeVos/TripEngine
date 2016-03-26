@@ -15,8 +15,11 @@ int main(int argc, char **argv)
 
 	GameObjects::Model* model = new GameObjects::Model("Resources\\Models\\Priest.obj");
 	model->SetProgram(shaderMgr->GetProgram("StdMat"));
-
 	modelMgr->AddModel(model);
+
+	GameObjects::Model* suzanne = new GameObjects::Model("Resources\\Models\\Suzanne.obj");
+	suzanne->SetProgram(shaderMgr->GetProgram("StdMat"));
+	modelMgr->AddModel(suzanne);
 
 	engine->Run();
 
