@@ -82,8 +82,7 @@ void InitGLUT::DisplayCallback()
 	if (listener)
 	{
 		listener->notifyBeginFrame();
-		if (listener)
-			listener->notifyDisplayFrame();
+		listener->notifyDisplayFrame();
 
 		glutSwapBuffers();
 
@@ -135,7 +134,7 @@ void InitGLUT::PrintOpenGLInfo(const Core::WindowInfo& windowInfo,
 	std::cout << "******************************************************************" << std::endl;
 }
 
-void InitGLUT::SetListener(Core::IListener*& iListener)
+void InitGLUT::SetListener(Core::IListener* iListener)
 {
 	listener = iListener;
 }

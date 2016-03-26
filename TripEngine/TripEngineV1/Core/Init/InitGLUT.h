@@ -28,7 +28,7 @@ namespace TripEngine
 				static void PrintOpenGLInfo(const Core::WindowInfo& windowInfo,
 					const Core::ContextInfo& context);
 
-				static void SetListener(IListener*& iListener);
+				static void SetListener(IListener* iListener);
 
 			private:
 				static IListener* listener;
