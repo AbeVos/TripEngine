@@ -1,4 +1,6 @@
 #pragma once
+#include <glm\glm.hpp>
+#include <glm\gtc\matrix_transform.hpp>
 #include "Transform.h"
 
 namespace TripEngine
@@ -7,8 +9,10 @@ namespace TripEngine
 	{
 		class GameObject
 		{
-		protected:
+		public:
 			Transform* transform;
+
+		protected:
 			glm::mat4 transformMatrix;
 
 		public:
@@ -19,6 +23,8 @@ namespace TripEngine
 
 		public:
 			virtual void Update();
+
+			virtual void Translate(const glm::vec3& offset);
 		};
 	}
 }

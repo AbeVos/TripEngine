@@ -18,14 +18,11 @@ Engine::Engine()
 Engine::~Engine()
 {
 	delete sceneManager;
-	delete modelManager;
-	delete shaderManager;
 }
 
 void Engine::Init()
 {
 	sceneManager = new Managers::SceneManager();
-	//modelManager = sceneManager
 
 	InitGLUT::SetListener(sceneManager);
 }
@@ -35,12 +32,12 @@ void Engine::Run()
 	InitGLUT::Run();
 }
 
-Managers::ModelManager* Engine::GetModelManager()
+void Engine::CreateScene(const std::string& name, Managers::IScene* scene)
 {
-	return (Managers::ModelManager*) (sceneManager->GetModelManager());
+	sceneManager->CreateScene(name, scene);
 }
 
-Managers::ShaderManager* Engine::GetShaderManager()
+void Engine::SetCurrentScene(const std::string& name)
 {
-	return (Managers::ShaderManager*) (sceneManager->GetShaderManager());
+	sceneManager->SetCurrentScene(name);
 }

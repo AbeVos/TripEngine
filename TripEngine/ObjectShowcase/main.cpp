@@ -2,24 +2,24 @@
 #include <TripEngineV1\Engine.h>
 #include <TripEngineV1\Managers\ModelManager.h>
 #include <TripEngineV1\GameObjects\Model.h>
+#include <TripEngineV1\Managers\IScene.h>
+#include "Scenes\MainScene.h"
+#include <string>
 
 using namespace TripEngine;
 
 int main(int argc, char **argv)
 {
 	Engine* engine = new Engine();
-	Managers::ShaderManager* shaderMgr = engine->GetShaderManager();
-	Managers::ModelManager* modelMgr = engine->GetModelManager();
 
-	shaderMgr->CreateProgram("StdMat", "Resources\\Shaders\\Vertex_Shader.glsl", "Resources\\Shaders\\Fragment_Shader.glsl");
+	Scenes::MainScene* scene = new Scenes::MainScene(engine);
 
-	GameObjects::Model* model = new GameObjects::Model("Resources\\Models\\Priest.obj");
-	model->SetProgram(shaderMgr->GetProgram("StdMat"));
-	modelMgr->AddModel(model);
+	engine->CreateScene("mainScene", scene);
+	engine->SetCurrentScene("mainScene");
 
-	GameObjects::Model* suzanne = new GameObjects::Model("Resources\\Models\\Suzanne.obj");
-	suzanne->SetProgram(shaderMgr->GetProgram("StdMat"));
-	modelMgr->AddModel(suzanne);
+	//Managers::ShaderManager* shaderMgr = engine->GetShaderManager();
+
+	//shaderMgr->CreateProgram("StdMat", "Resources\\Shaders\\Vertex_Shader.glsl", "Resources\\Shaders\\Fragment_Shader.glsl");
 
 	engine->Run();
 

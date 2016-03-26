@@ -17,8 +17,8 @@ namespace TripEngine
 				name = "TripEngine Application";
 				width = 800;
 				height = 600;
-				xPos = 400;
-				yPos = 300;
+				xPos = 100;
+				yPos = 100;
 				isReshapable = true;
 			}
 

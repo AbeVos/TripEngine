@@ -1,9 +1,12 @@
 #pragma once
 #include <glew\glew.h>
 #include <glm\glm.hpp>
+#include <glm\gtc\matrix_transform.hpp>
 #include "../Core/Init/IListener.h"
+#include "IScene.h"
 #include "ModelManager.h"
 #include "ShaderManager.h"
+#include <map>
 
 namespace TripEngine
 {
@@ -12,12 +15,8 @@ namespace TripEngine
 		class SceneManager : public Core::IListener
 		{
 		private:
-			Managers::ModelManager* modelManager;
-			Managers::ShaderManager* shaderManager;
-
-			unsigned int screenWidth, screenHeight;
-			glm::vec4 ambientColor;
-			glm::vec4 lightPos;
+			std::string currentScene;
+			std::map<std::string, IScene*> scenes;
 
 		public:
 			SceneManager();
@@ -29,8 +28,10 @@ namespace TripEngine
 			virtual void notifyEndFrame();
 			virtual void notifyReshape(int width, int height, int prevWidth, int prevHeight);
 
-			const Managers::ModelManager* GetModelManager();
-			const Managers::ShaderManager* GetShaderManager();
+			void CreateScene(const std::string& name, IScene* scene);
+			void SetCurrentScene(const std::string& name);
+
+			const Managers::IScene* GetCurrentScene();
 		};
 	}
 }

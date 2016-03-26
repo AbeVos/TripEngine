@@ -5,6 +5,8 @@
 #include "Managers\SceneManager.h"
 #include "Managers\ModelManager.h"
 #include "Managers\ShaderManager.h"
+#include "Managers\IScene.h"
+#include <string>
 
 namespace TripEngine
 {
@@ -12,8 +14,6 @@ namespace TripEngine
 	{
 	private:
 		Managers::SceneManager* sceneManager;
-		Managers::ModelManager* modelManager;
-		Managers::ShaderManager* shaderManager;
 
 	public:
 		Engine();
@@ -25,7 +25,7 @@ namespace TripEngine
 	public:
 		void Run();
 
-		Managers::ModelManager* GetModelManager();
-		Managers::ShaderManager* GetShaderManager();
+		void CreateScene(const std::string& name, Managers::IScene* scene);
+		void SetCurrentScene(const std::string& name);
 	};
 }

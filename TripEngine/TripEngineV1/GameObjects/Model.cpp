@@ -5,11 +5,6 @@
 using namespace TripEngine;
 using namespace GameObjects;
 
-Model::Model()
-{
-
-}
-
 Model::Model(const char* path) : GameObject()
 {
 	std::vector<Vertex> vertices;
@@ -45,18 +40,18 @@ Model::~Model()
 
 }
 
-void Model::Update()
-{
-
-}
-
-void Model::Draw()
+void Model::Draw(const glm::vec3& viewPos, const glm::vec3& lightPos, const glm::vec4& ambientColor)
 {
 	glUseProgram(program);
 
 	glUniformMatrix4fv(glGetUniformLocation(program, "modelMatrix"), 1, false, &transformMatrix[0][0]);
-	glUniformMatrix4fv(glGetUniformLocation(program, "viewMatrix"), 1, false, &viewMatrix[0][0]);
-	glUniformMatrix4fv(glGetUniformLocation(program, "projectionMatrix"), 1, false, &projectionMatrix[0][0]);
+	glUniformMatrix4fv(glGetUniformLocation(program, "viewMatrix"), 1, false, &(*viewMatrix)[0][0]);
+	glUniformMatrix4fv(glGetUniformLocation(program, "projectionMatrix"), 1, false, &(*projectionMatrix)[0][0]);
+
+	glUniform3fv(glGetUniformLocation(program, "viewPosition"), 1, &viewPos[0]);
+	glUniform3fv(glGetUniformLocation(program, "lightPosition"), 1, &lightPos[0]);
+	glUniform4fv(glGetUniformLocation(program, "ambient"), 1, &ambientColor[0]);
+
 	glBindVertexArray(vao);
 
 	glDrawArrays(GL_TRIANGLES, 0, numVertices);
@@ -75,4 +70,14 @@ GLuint Model::GetVao()
 const std::vector<GLuint>& Model::GetVbos()
 {
 	return vbos;
+}
+
+void Model::SetViewMatrix(glm::mat4* matrix)
+{
+	viewMatrix = matrix;
+}
+
+void Model::SetProjectionMatrix(glm::mat4* matrix)
+{
+	projectionMatrix = matrix;
 }

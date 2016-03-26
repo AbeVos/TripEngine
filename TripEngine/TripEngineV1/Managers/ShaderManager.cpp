@@ -3,9 +3,10 @@
 using namespace TripEngine;
 using namespace Managers;
 
+std::map<std::string, GLuint> ShaderManager::programs;
+
 ShaderManager::ShaderManager()
 {
-	programs = std::map<std::string, GLuint>();
 }
 
 ShaderManager::~ShaderManager()

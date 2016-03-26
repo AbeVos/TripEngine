@@ -7,27 +7,30 @@ SceneManager::SceneManager()
 {
 	glEnable(GL_DEPTH_TEST);
 
-	modelManager = new Managers::ModelManager();
-	shaderManager = new Managers::ShaderManager();
-
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 }
 
 SceneManager::~SceneManager()
 {
-	
+	std::map<std::string, Managers::IScene*>::iterator i;
+
+	for (i = (&scenes)->begin(); i != (&scenes)->end(); ++i)
+	{
+		Managers::IScene* scene = i->second;
+		delete scene;
+	}
+
+	(&scenes)->clear();
 }
 
 void SceneManager::notifyBeginFrame()
 {
+	scenes[currentScene]->Update();
 }
 
 void SceneManager::notifyDisplayFrame()
 {
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	glClearColor(0.1f, 0.3f, 0.1f, 1.0f);
-
-	modelManager->Draw();
+	scenes[currentScene]->Draw();
 }
 
 void SceneManager::notifyEndFrame()
@@ -40,12 +43,17 @@ void SceneManager::notifyReshape(int width, int height, int prevWidth, int prevH
 
 }
 
-const Managers::ModelManager* SceneManager::GetModelManager()
+void SceneManager::CreateScene(const std::string& name, Managers::IScene* scene)
 {
-	return modelManager;
+	scenes[name] = scene;
 }
 
-const Managers::ShaderManager* SceneManager::GetShaderManager()
+void SceneManager::SetCurrentScene(const std::string& name)
 {
-	return shaderManager;
+	currentScene = name;
+}
+
+const Managers::IScene* SceneManager::GetCurrentScene()
+{
+	return scenes[currentScene];
 }

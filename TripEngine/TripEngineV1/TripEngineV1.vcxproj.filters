@@ -60,6 +60,18 @@
     <ClInclude Include="GameObjects\Vertex.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Managers\IScene.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjects\Camera.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\Framebuffer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjects\Quad.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine.cpp">
@@ -87,6 +99,15 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Import\OBJImporter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjects\Camera.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\Framebuffer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjects\Quad.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
