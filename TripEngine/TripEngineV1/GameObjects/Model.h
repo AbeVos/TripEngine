@@ -16,10 +16,10 @@ namespace TripEngine
 			GLuint vao;
 			std::vector<GLuint> vbos;
 			GLuint program;
+			unsigned int textureDiffuse;
+			unsigned int textureNormal;
 
 			unsigned int numVertices;
-
-			GLuint texture;
 
 		public:
 			Model(const char* path);
@@ -29,6 +29,8 @@ namespace TripEngine
 			virtual void Draw(const glm::vec3& viewPos, const glm::vec3& lightPos, const glm::vec4& ambientColor);
 
 			virtual void SetProgram(GLuint program);
+			virtual void SetDiffuse(unsigned int texture);
+			virtual void SetNormal(unsigned int texture);
 
 			virtual GLuint GetVao();
 			virtual const std::vector<GLuint>& GetVbos();

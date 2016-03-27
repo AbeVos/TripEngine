@@ -69,18 +69,20 @@ void Quad::Update()
 
 }
 
-void Quad::Draw(const unsigned int& color, const unsigned int& depth, const glm::mat4& i_pv_matrix)
+void Quad::Draw(const unsigned int& color, const unsigned int& depth, const int& pass, const int& width, const int& height)
 {
 	glUseProgram(program);
 
-	glActiveTexture(GL_TEXTURE0 + 1);
+	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, color);
-	glUniform1i(glGetUniformLocation(program, "texture_color"), 1);
-	glActiveTexture(GL_TEXTURE0 + 2);
+	glUniform1i(glGetUniformLocation(program, "texture_color"), 0);
+	glActiveTexture(GL_TEXTURE0 + 1);
 	glBindTexture(GL_TEXTURE_2D, depth);
-	glUniform1i(glGetUniformLocation(program, "texture_depth"), 2);
+	glUniform1i(glGetUniformLocation(program, "texture_depth"), 1);
 
-	glUniformMatrix4fv(glGetUniformLocation(program, "i_pv_matrix"), 1, false, &i_pv_matrix[0][0]);
+	glUniform1i(glGetUniformLocation(program, "pass"), pass);
+	glUniform1i(glGetUniformLocation(program, "width"), width);
+	glUniform1i(glGetUniformLocation(program, "height"), height);
 
 	glBindVertexArray(vao);
 	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);

@@ -77,7 +77,11 @@ void InitGLUT::DisplayCallback()
 		printf("%f ms/frame\n", 1000.0 / double(nbFrames));
 		nbFrames = 0;
 		lastTime += 1000;
+
+		printf("Time: %f s.\n", Time::time());
 	}
+
+	Time::Update();
 
 	if (listener)
 	{

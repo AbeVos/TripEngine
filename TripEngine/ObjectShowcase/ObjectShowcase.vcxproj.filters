@@ -27,4 +27,10 @@
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Shaders\Fragment_Shader.glsl" />
+    <None Include="Resources\Shaders\ppFragment.glsl" />
+    <None Include="Resources\Shaders\ppVertex.glsl" />
+    <None Include="Resources\Shaders\Vertex_Shader.glsl" />
+  </ItemGroup>
 </Project>

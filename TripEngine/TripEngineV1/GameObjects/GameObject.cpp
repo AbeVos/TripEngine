@@ -17,10 +17,17 @@ GameObject::~GameObject()
 
 void GameObject::Update()
 {
-	transformMatrix = glm::translate(glm::mat4(1), transform->position);
+	transformMatrix = glm::mat4(1);
+	transformMatrix = glm::scale(transformMatrix, transform->scale);
+	transformMatrix = glm::translate(glm::mat4(1), transform->position) * transformMatrix;
 }
 
 void GameObject::Translate(const glm::vec3& offset)
 {
 	transform->position += offset;
+}
+
+void GameObject::Scale(const glm::vec3& scale)
+{
+	transform->scale *= scale;
 }

@@ -2,6 +2,8 @@
 #include <glm\glm.hpp>
 #include <glm\gtc\matrix_transform.hpp>
 #include <TripEngineV1\Engine.h>
+#include <TripEngineV1\Time.h>
+#include <TripEngineV1\Import\TextureImporter.h>
 #include <TripEngineV1\Managers\ModelManager.h>
 #include <TripEngineV1\Managers\ShaderManager.h>
 #include <TripEngineV1\Managers\IScene.h>

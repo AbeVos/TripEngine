@@ -48,6 +48,14 @@ void Model::Draw(const glm::vec3& viewPos, const glm::vec3& lightPos, const glm:
 	glUniformMatrix4fv(glGetUniformLocation(program, "viewMatrix"), 1, false, &(*viewMatrix)[0][0]);
 	glUniformMatrix4fv(glGetUniformLocation(program, "projectionMatrix"), 1, false, &(*projectionMatrix)[0][0]);
 
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_2D, textureDiffuse);
+	glUniform1i(glGetUniformLocation(program, "textureDiffuse"), 0);
+
+	glActiveTexture(GL_TEXTURE0 + 1);
+	glBindTexture(GL_TEXTURE_2D, textureNormal);
+	glUniform1i(glGetUniformLocation(program, "textureNormal"), 1);
+
 	glUniform3fv(glGetUniformLocation(program, "viewPosition"), 1, &viewPos[0]);
 	glUniform3fv(glGetUniformLocation(program, "lightPosition"), 1, &lightPos[0]);
 	glUniform4fv(glGetUniformLocation(program, "ambient"), 1, &ambientColor[0]);
@@ -60,6 +68,16 @@ void Model::Draw(const glm::vec3& viewPos, const glm::vec3& lightPos, const glm:
 void Model::SetProgram(GLuint program)
 {
 	this->program = program;
+}
+
+void Model::SetDiffuse(unsigned int texture)
+{
+	this->textureDiffuse = texture;
+}
+
+void Model::SetNormal(unsigned int texture)
+{
+	this->textureNormal = texture;
 }
 
 GLuint Model::GetVao()

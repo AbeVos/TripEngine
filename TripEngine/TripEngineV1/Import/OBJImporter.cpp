@@ -23,7 +23,7 @@ bool OBJImporter::ImportOBJ(const char* path, std::vector<GameObjects::Vertex>& 
 
 	while (1)
 	{
-		char lineHeader[16];
+		char lineHeader[64];
 		// read the first word of the line
 		int res = fscanf(file, "%s", lineHeader);
 		if (res == EOF)

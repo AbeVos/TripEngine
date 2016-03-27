@@ -19,7 +19,7 @@ namespace TripEngine
 			~Quad();
 
 			void Create();
-			virtual void Draw(const unsigned int& color, const unsigned int& depth, const glm::mat4& i_pv_matrix);
+			virtual void Draw(const unsigned int& color, const unsigned int& depth, const int& pass, const int& width, const int& height);
 			virtual void Update() override final;
 		};
 	}

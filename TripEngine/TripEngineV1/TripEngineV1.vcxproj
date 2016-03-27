@@ -124,9 +124,11 @@
     <ClCompile Include="GameObjects\Model.cpp" />
     <ClCompile Include="GameObjects\Quad.cpp" />
     <ClCompile Include="Import\OBJImporter.cpp" />
+    <ClCompile Include="Import\TextureImporter.cpp" />
     <ClCompile Include="Managers\ModelManager.cpp" />
     <ClCompile Include="Managers\SceneManager.cpp" />
     <ClCompile Include="Managers\ShaderManager.cpp" />
+    <ClCompile Include="Time.cpp" />
     <ClCompile Include="Rendering\Framebuffer.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -143,11 +145,14 @@
     <ClInclude Include="GameObjects\Quad.h" />
     <ClInclude Include="GameObjects\Transform.h" />
     <ClInclude Include="GameObjects\Vertex.h" />
+    <ClInclude Include="Import\BMPHeader.h" />
+    <ClInclude Include="Import\TextureImporter.h" />
     <ClInclude Include="Import\OBJImporter.h" />
     <ClInclude Include="Managers\IScene.h" />
     <ClInclude Include="Managers\ModelManager.h" />
     <ClInclude Include="Managers\SceneManager.h" />
     <ClInclude Include="Managers\ShaderManager.h" />
+    <ClInclude Include="Time.h" />
     <ClInclude Include="Rendering\Framebuffer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

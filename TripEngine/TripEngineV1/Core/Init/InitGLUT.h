@@ -4,6 +4,7 @@
 #include "WindowInfo.h"
 #include "InitGLEW.h"
 #include "IListener.h"
+#include "..\..\Time.h"
 #include <iostream>
 
 namespace TripEngine

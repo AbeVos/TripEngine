@@ -122,6 +122,12 @@
   <ItemGroup>
     <ClInclude Include="Scenes\MainScene.h" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Shaders\Fragment_Shader.glsl" />
+    <None Include="Resources\Shaders\ppFragment.glsl" />
+    <None Include="Resources\Shaders\ppVertex.glsl" />
+    <None Include="Resources\Shaders\Vertex_Shader.glsl" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

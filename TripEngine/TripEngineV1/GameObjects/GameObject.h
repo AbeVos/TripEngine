@@ -25,6 +25,7 @@ namespace TripEngine
 			virtual void Update();
 
 			virtual void Translate(const glm::vec3& offset);
+			virtual void Scale(const glm::vec3& scale);
 		};
 	}
 }
