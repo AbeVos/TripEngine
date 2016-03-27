@@ -49,6 +49,7 @@ vec3 applyLight(Light light)
 void main( void )
 {
 	vec3 linearColor = 0.5 * ambient.rgb;
+
 	for(int i = 0; i < numLights; ++i)
 	{
 		linearColor += applyLight(lights[i]);

@@ -64,23 +64,21 @@ void Model::Draw(const glm::vec3& viewPos, const glm::vec4& ambientColor)
 
 	for (size_t i = 0; i < Managers::LightManager::GetNumLights(); ++i)
 	{
-		std::ostringstream ss;
-		ss << "lights[" << i << "].position";
-		std::string uniformName = ss.str();
+		std::ostringstream ss1;
+		ss1 << "lights[" << i << "].position";
+		std::string uniformName = ss1.str();
 
 		glUniform4fv(glGetUniformLocation(program, uniformName.c_str()), 1, &Managers::LightManager::GetLight(i)->position[0]);
 
-		ss.clear();
-		ss << "lights[" << i << "].color";
-		uniformName = ss.str();
+		std::ostringstream ss2;
+		ss2 << "lights[" << i << "].color";
+		uniformName = ss2.str();
 
 		glUniform3fv(glGetUniformLocation(program, uniformName.c_str()), 1, &Managers::LightManager::GetLight(i)->color[0]);
 
-		ss.clear();
-		ss << "lights[" << i << "].range";
-		uniformName = ss.str();
-
-		ss.clear();
+		std::ostringstream ss3;
+		ss3 << "lights[" << i << "].range";
+		uniformName = ss3.str();
 
 		glUniform1f(glGetUniformLocation(program, uniformName.c_str()), Managers::LightManager::GetLight(i)->range);
 	}

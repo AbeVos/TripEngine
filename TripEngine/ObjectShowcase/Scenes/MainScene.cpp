@@ -30,12 +30,13 @@ MainScene::MainScene(Engine* engine)
 	lights["second"]->range = 5.0;
 	Managers::LightManager::AddLight(lights["second"]);
 
-	Managers::ShaderManager::CreateProgram("StdMat", "Resources\\Shaders\\Vertex_Shader.glsl", "Resources\\Shaders\\Fragment_Shader.glsl");
+	lights["third"] = new Rendering::Light();
+	lights["third"]->position = glm::vec4(-1, 2, 3, 1.0);
+	lights["third"]->color = 0.5f * glm::vec3(1, 1, 1);
+	lights["third"]->range = 10.0;
+	Managers::LightManager::AddLight(lights["third"]);
 
-	/*GameObjects::Model* model = new GameObjects::Model("Resources\\Models\\Priest.obj");
-	model->SetProgram(Managers::ShaderManager::GetProgram("StdMat"));
-	model->SetDiffuse(Import::TextureImporter::ImportTexture("Resources\\Textures\\priestGreen.bmp", 512, 512));
-	modelManager->AddModel(model);*/
+	Managers::ShaderManager::CreateProgram("StdMat", "Resources\\Shaders\\Vertex_Shader.glsl", "Resources\\Shaders\\Fragment_Shader.glsl");
 
 	player = new Players::Player();
 	player->SetProgram(Managers::ShaderManager::GetProgram("StdMat"));
@@ -52,7 +53,6 @@ MainScene::MainScene(Engine* engine)
 	platform->SetDiffuse(Import::TextureImporter::ImportTexture("Resources\\Textures\\Wood_dif.bmp", 512, 512));
 	modelManager->AddModel(platform);
 
-	//suzanne->Translate(glm::vec3(2, 1, 0));
 	mushroom->transform->scale *= 4;
 	mushroom->transform->position += glm::vec3(2, 0, 1);
 	platform->Translate(glm::vec3(0.0, -0.5, 0.0));

@@ -6,6 +6,9 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TripEngineV1", "TripEngineV1\TripEngineV1.vcxproj", "{21A91487-C95C-4302-BFBF-33CB532B255E}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ObjectShowcase", "ObjectShowcase\ObjectShowcase.vcxproj", "{64D604CB-7349-4143-B7AF-112981F1DC7D}"
+	ProjectSection(ProjectDependencies) = postProject
+		{21A91487-C95C-4302-BFBF-33CB532B255E} = {21A91487-C95C-4302-BFBF-33CB532B255E}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
