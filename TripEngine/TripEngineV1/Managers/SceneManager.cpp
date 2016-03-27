@@ -6,6 +6,7 @@ using namespace Managers;
 SceneManager::SceneManager()
 {
 	glEnable(GL_DEPTH_TEST);
+	glEnable(GL_CULL_FACE);
 
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 }

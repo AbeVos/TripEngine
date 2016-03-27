@@ -6,7 +6,7 @@ using namespace TripEngine;
 
 Player::Player() : TripEngine::GameObjects::Model("Resources\\Models\\Priest.obj")
 {
-	speed = 1.0;
+	speed = 3.0;
 }
 
 Player::~Player()

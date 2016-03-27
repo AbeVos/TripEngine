@@ -21,7 +21,7 @@ namespace TripEngine
 
 		public:
 			void Update();
-			void Draw(const glm::vec3& viewPos, const glm::vec3& lightPos, const glm::vec4& ambientColor);
+			void Draw(const glm::vec3& viewPos, const glm::vec4& ambientColor);
 
 			void AddModel(GameObjects::Model* model);
 

@@ -1,6 +1,7 @@
 #include "Model.h"
 #include "Vertex.h"
 #include "..\Import\OBJImporter.h"
+#include <sstream>
 
 using namespace TripEngine;
 using namespace GameObjects;
@@ -40,7 +41,7 @@ Model::~Model()
 
 }
 
-void Model::Draw(const glm::vec3& viewPos, const glm::vec3& lightPos, const glm::vec4& ambientColor)
+void Model::Draw(const glm::vec3& viewPos, const glm::vec4& ambientColor)
 {
 	glUseProgram(program);
 
@@ -57,12 +58,46 @@ void Model::Draw(const glm::vec3& viewPos, const glm::vec3& lightPos, const glm:
 	glUniform1i(glGetUniformLocation(program, "textureNormal"), 1);
 
 	glUniform3fv(glGetUniformLocation(program, "viewPosition"), 1, &viewPos[0]);
-	glUniform3fv(glGetUniformLocation(program, "lightPosition"), 1, &lightPos[0]);
 	glUniform4fv(glGetUniformLocation(program, "ambient"), 1, &ambientColor[0]);
+
+	glUniform1i(glGetUniformLocation(program, "numLights"), Managers::LightManager::GetNumLights());
+
+	for (size_t i = 0; i < Managers::LightManager::GetNumLights(); ++i)
+	{
+		std::ostringstream ss;
+		ss << "lights[" << i << "].position";
+		std::string uniformName = ss.str();
+
+		glUniform4fv(glGetUniformLocation(program, uniformName.c_str()), 1, &Managers::LightManager::GetLight(i)->position[0]);
+
+		ss.clear();
+		ss << "lights[" << i << "].color";
+		uniformName = ss.str();
+
+		glUniform3fv(glGetUniformLocation(program, uniformName.c_str()), 1, &Managers::LightManager::GetLight(i)->color[0]);
+
+		ss.clear();
+		ss << "lights[" << i << "].range";
+		uniformName = ss.str();
+
+		ss.clear();
+
+		glUniform1f(glGetUniformLocation(program, uniformName.c_str()), Managers::LightManager::GetLight(i)->range);
+	}
 
 	glBindVertexArray(vao);
 
 	glDrawArrays(GL_TRIANGLES, 0, numVertices);
+}
+
+template <typename T>
+void Model::SetLightUniform(GLuint program, const char* name, int index, const T& value)
+{
+	std::ostringstream ss;
+	ss << "allLights[" << lightIndex << "]." << propertyName;
+	std::string uniformName = ss.str();
+
+	shaders->setUniform(uniformName.c_str(), value);
 }
 
 void Model::SetProgram(GLuint program)

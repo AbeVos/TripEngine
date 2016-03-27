@@ -17,7 +17,18 @@ MainScene::MainScene(Engine* engine)
 	*projectionMatrix = glm::perspective(45.0f, 1.5f, 0.2f, 2000.0f);
 
 	ambientColor = new glm::vec4(0.1, 0.2, 0.05, 1.0);
-	lightPos = new glm::vec3(0, 3, -0.7);
+
+	lights["main"] = new Rendering::Light();
+	lights["main"]->position = glm::vec4(0, 3, -3, 1.0);
+	lights["main"]->color = glm::vec3(0.9, 1, 0.3);
+	lights["main"]->range = 10.0;
+	Managers::LightManager::AddLight(lights["main"]);
+
+	lights["second"] = new Rendering::Light();
+	lights["second"]->position = glm::vec4(2, 1, 1, 1.0);
+	lights["second"]->color = 0.5f * glm::vec3(0.8, 0.5, 0.1);
+	lights["second"]->range = 5.0;
+	Managers::LightManager::AddLight(lights["second"]);
 
 	Managers::ShaderManager::CreateProgram("StdMat", "Resources\\Shaders\\Vertex_Shader.glsl", "Resources\\Shaders\\Fragment_Shader.glsl");
 
@@ -26,7 +37,7 @@ MainScene::MainScene(Engine* engine)
 	model->SetDiffuse(Import::TextureImporter::ImportTexture("Resources\\Textures\\priestGreen.bmp", 512, 512));
 	modelManager->AddModel(model);*/
 
-	Players::Player* player = new Players::Player();
+	player = new Players::Player();
 	player->SetProgram(Managers::ShaderManager::GetProgram("StdMat"));
 	player->SetDiffuse(Import::TextureImporter::ImportTexture("Resources\\Textures\\priestGreen.bmp", 512, 512));
 	modelManager->AddModel(player);
@@ -57,16 +68,15 @@ MainScene::MainScene(Engine* engine)
 MainScene::~MainScene()
 {
 	delete modelManager;
+
+	lights.clear();
 }
 
 void MainScene::Update()
 {
-	lightPos->x = 0.3 * glm::cos(3 * Time::time());
-	lightPos->y = 1 + 0.2 * glm::sin(3 * Time::time());
-
 	camera.transform->position = glm::vec3(4 * glm::cos(0.5 * Time::time()), 2.5 + 2 * glm::sin(0.25 * Time::time()), 4 * glm::sin(0.5 * Time::time()));
 
-	*viewMatrix = glm::lookAt(camera.transform->position, glm::vec3(0, 1, 0), glm::vec3(0, 1, 0));
+	*viewMatrix = glm::lookAt(camera.transform->position, player->transform->position, glm::vec3(0, 1, 0));
 
 	modelManager->SetViewMatrix(viewMatrix);
 	modelManager->SetProjectionMatrix(projectionMatrix);
@@ -80,7 +90,7 @@ void MainScene::Draw()
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		glClearColor(ambientColor->r, ambientColor->g, ambientColor->b, ambientColor->a);
 
-		modelManager->Draw(camera.transform->position, *lightPos, *ambientColor);
+		modelManager->Draw(camera.transform->position, *ambientColor);
 	}
 	fbo1.Unbind();
 

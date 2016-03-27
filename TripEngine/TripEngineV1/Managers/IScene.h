@@ -1,7 +1,10 @@
 #pragma once
 #include "ModelManager.h"
 #include "ShaderManager.h"
+#include "../Rendering/Light.h"
 #include "../GameObjects/Camera.h"
+#include <map>
+#include <string>
 
 namespace TripEngine
 {
@@ -22,7 +25,8 @@ namespace TripEngine
 			glm::mat4* projectionMatrix;
 
 			glm::vec4* ambientColor;
-			glm::vec3* lightPos;
+
+			std::map<std::string, Rendering::Light*> lights;
 
 			Managers::ModelManager* modelManager;
 		};

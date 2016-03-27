@@ -6,9 +6,11 @@
 #include <TripEngineV1\Import\TextureImporter.h>
 #include <TripEngineV1\Managers\ModelManager.h>
 #include <TripEngineV1\Managers\ShaderManager.h>
+#include <TripEngineV1\Managers\LightManager.h>
 #include <TripEngineV1\Managers\IScene.h>
 #include <TripEngineV1\GameObjects\Quad.h>
 #include <TripEngineV1\Rendering\Framebuffer.h>
+#include <TripEngineV1\Rendering\Light.h>
 #include "..\Players\Player.h"
 
 using namespace TripEngine;

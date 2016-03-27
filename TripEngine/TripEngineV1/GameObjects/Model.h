@@ -1,6 +1,7 @@
 #pragma once
 #include <glew\glew.h>
 #include "GameObject.h"
+#include "..\Managers\LightManager.h"
 #include <vector>
 
 namespace TripEngine
@@ -25,8 +26,12 @@ namespace TripEngine
 			Model(const char* path);
 			virtual ~Model();
 
+		private:
+			template <typename T>
+			void SetLightUniform(GLuint program, const char* name, int index, const T& value);
+
 		public:
-			virtual void Draw(const glm::vec3& viewPos, const glm::vec3& lightPos, const glm::vec4& ambientColor);
+			virtual void Draw(const glm::vec3& viewPos, const glm::vec4& ambientColor);
 
 			virtual void SetProgram(GLuint program);
 			virtual void SetDiffuse(unsigned int texture);
