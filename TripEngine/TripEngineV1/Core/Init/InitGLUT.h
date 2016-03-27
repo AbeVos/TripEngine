@@ -4,6 +4,7 @@
 #include "WindowInfo.h"
 #include "InitGLEW.h"
 #include "IListener.h"
+#include "..\..\Input.h"
 #include "..\..\Time.h"
 #include <iostream>
 

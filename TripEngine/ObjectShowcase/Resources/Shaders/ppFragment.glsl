@@ -18,25 +18,22 @@ float intensity(float treshold, vec2 uv)
 {
 	vec3 color = texture(texture_color, uv).rgb;
 	//return step(treshold, (color.r + color.g + color.b) / 3.0);
-	return pow((color.r + color.g + color.b) / 3.0, 8);
+	return 2 * pow((color.r + color.g + color.b) / 3.0, 16);
 }
 
 void main()
 {
 	vec4 color = texture(texture_color, uv);
-	float depth;
 	
 	if (pass == 0)
 	{
-		depth = texture(texture_depth, uv).r;
-
 		float bloom = intensity(0.8, uv) * weights[0];
-		float offset = 10.0 / width;
+		float offset = 3.0 / width;
 
 		for (int i = 1; i < 6; i++)
 		{
 			bloom += (intensity(0.8, uv + vec2(i * offset, 0)) +
-				intensity(0.8, uv + vec2(- i * offset, 0))) * weights[i];
+				intensity(0.8, uv + vec2(-i * offset, 0))) * weights[i];
 		}
 
 		out_color = vec4(color.rgb, bloom);
@@ -44,15 +41,14 @@ void main()
 	else
 	{
 		float bloom = color.a * weights[0];
-		float offset = 10.0 / height;
+		float offset = 3.0 / height;
 
 		for (int i = 1; i < 6; i++)
 		{
 			bloom += (texture(texture_color, uv + vec2(0, i * offset)).a +
-				texture(texture_color, uv + vec2(0, - i * offset)).a) * weights[i];
+				texture(texture_color, uv + vec2(0, -i * offset)).a) * weights[i];
 		}
 
-		out_color = vec4((1 - color.rgb) * bloom + color.rgb, 1);
-		//out_color = vec4((1 - color) * bloom);
+		out_color = vec4((1.5 - color.rgb) * bloom + color.rgb, 1);
 	}
 }

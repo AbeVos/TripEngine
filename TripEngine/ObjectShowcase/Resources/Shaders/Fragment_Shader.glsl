@@ -4,6 +4,7 @@ layout(location = 0) out vec3 out_color;
 in vec2 uv;
 in vec3 normal;
 in vec3 viewDirection;
+in vec3 vertex;
 
 //uniform vec3 color = vec3(0.8, 0.3, 0.1);
 
@@ -15,7 +16,10 @@ uniform vec4 ambient;
 
 void main( void )
 {
-	vec3 lightDirection = normalize(lightPosition);
+	//vec3 lightDirection = normalize(lightPosition);
+	vec3 lightDirection = normalize(lightPosition - vertex);
+	float attenuation = 1 / length(lightPosition - vertex);
+
 	vec3 color = texture(textureDiffuse, uv).rgb;
 
 	/*float diffuse = 0.5 * ceil(2 * clamp(dot(normal, lightDirection), 0, 1));
@@ -31,5 +35,5 @@ void main( void )
 	float rim = (1 - clamp(dot(normal, viewDirection), 0, 1)) * pow(1 - diffuse, 4);
 	vec3 ambient = 0.5 * ambient.rgb;
 
-	out_color = (diffuse * color + 0.6 * pow(specular, 2) + 0.2 * pow(rim, 4)) * vec3(1) + ambient;
+	out_color = attenuation * (diffuse * color + 0.6 * pow(specular, 2) + 0.2 * pow(rim, 4)) * vec3(1) + ambient;
 }

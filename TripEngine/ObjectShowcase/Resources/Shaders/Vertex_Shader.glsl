@@ -11,14 +11,16 @@ uniform float time;
 out vec2 uv;
 out vec3 normal;
 out vec3 viewDirection;
+out vec3 vertex;
 
 void main( void )
 {
 	uv = in_uv;
-	normal = in_normal;
+	normal = normalize(mat3(modelMatrix) * in_normal);
 
 	vec4 worldPosition = modelMatrix * vec4(in_position, 1);
 
+	vertex = worldPosition.xyz / worldPosition.w;
 	viewDirection = normalize(viewPosition - worldPosition.xyz);
 	gl_Position = projectionMatrix * viewMatrix * worldPosition;
 }

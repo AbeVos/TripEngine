@@ -42,6 +42,10 @@ void InitGLUT::Init(const Core::WindowInfo& windowInfo,
 	glutDisplayFunc(DisplayCallback);
 	glutReshapeFunc(ReshapeCallback);
 
+	glutMouseFunc(Input::MouseCallback);
+	glutKeyboardFunc(Input::KeyboardCallback);
+	glutKeyboardUpFunc(Input::KeyboardUpCallback);
+
 	Init::InitGLEW::Init();
 
 	glutSetOption(GLUT_ACTION_ON_WINDOW_CLOSE,

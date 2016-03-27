@@ -17,14 +17,19 @@ MainScene::MainScene(Engine* engine)
 	*projectionMatrix = glm::perspective(45.0f, 1.5f, 0.2f, 2000.0f);
 
 	ambientColor = new glm::vec4(0.1, 0.2, 0.05, 1.0);
-	lightPos = new glm::vec3(0, 3, -3);
+	lightPos = new glm::vec3(0, 3, -0.7);
 
 	Managers::ShaderManager::CreateProgram("StdMat", "Resources\\Shaders\\Vertex_Shader.glsl", "Resources\\Shaders\\Fragment_Shader.glsl");
 
-	GameObjects::Model* model = new GameObjects::Model("Resources\\Models\\Priest.obj");
+	/*GameObjects::Model* model = new GameObjects::Model("Resources\\Models\\Priest.obj");
 	model->SetProgram(Managers::ShaderManager::GetProgram("StdMat"));
 	model->SetDiffuse(Import::TextureImporter::ImportTexture("Resources\\Textures\\priestGreen.bmp", 512, 512));
-	modelManager->AddModel(model);
+	modelManager->AddModel(model);*/
+
+	Players::Player* player = new Players::Player();
+	player->SetProgram(Managers::ShaderManager::GetProgram("StdMat"));
+	player->SetDiffuse(Import::TextureImporter::ImportTexture("Resources\\Textures\\priestGreen.bmp", 512, 512));
+	modelManager->AddModel(player);
 
 	GameObjects::Model* mushroom = new GameObjects::Model("Resources\\Models\\Mushroom.obj");
 	mushroom->SetProgram(Managers::ShaderManager::GetProgram("StdMat"));
@@ -56,6 +61,9 @@ MainScene::~MainScene()
 
 void MainScene::Update()
 {
+	lightPos->x = 0.3 * glm::cos(3 * Time::time());
+	lightPos->y = 1 + 0.2 * glm::sin(3 * Time::time());
+
 	camera.transform->position = glm::vec3(4 * glm::cos(0.5 * Time::time()), 2.5 + 2 * glm::sin(0.25 * Time::time()), 4 * glm::sin(0.5 * Time::time()));
 
 	*viewMatrix = glm::lookAt(camera.transform->position, glm::vec3(0, 1, 0), glm::vec3(0, 1, 0));

@@ -9,6 +9,7 @@
 #include <TripEngineV1\Managers\IScene.h>
 #include <TripEngineV1\GameObjects\Quad.h>
 #include <TripEngineV1\Rendering\Framebuffer.h>
+#include "..\Players\Player.h"
 
 using namespace TripEngine;
 
@@ -17,6 +18,7 @@ namespace Scenes
 	class MainScene : public Managers::IScene
 	{
 	private:
+		Players::Player* player;
 		GameObjects::Quad* quad;
 
 		Rendering::Framebuffer fbo1;

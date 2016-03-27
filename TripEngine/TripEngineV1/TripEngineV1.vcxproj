@@ -125,6 +125,7 @@
     <ClCompile Include="GameObjects\Quad.cpp" />
     <ClCompile Include="Import\OBJImporter.cpp" />
     <ClCompile Include="Import\TextureImporter.cpp" />
+    <ClCompile Include="Input.cpp" />
     <ClCompile Include="Managers\ModelManager.cpp" />
     <ClCompile Include="Managers\SceneManager.cpp" />
     <ClCompile Include="Managers\ShaderManager.cpp" />
@@ -146,6 +147,7 @@
     <ClInclude Include="GameObjects\Transform.h" />
     <ClInclude Include="GameObjects\Vertex.h" />
     <ClInclude Include="Import\BMPHeader.h" />
+    <ClInclude Include="Input.h" />
     <ClInclude Include="Import\TextureImporter.h" />
     <ClInclude Include="Import\OBJImporter.h" />
     <ClInclude Include="Managers\IScene.h" />
