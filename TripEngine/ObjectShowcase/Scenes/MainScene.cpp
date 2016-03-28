@@ -12,15 +12,23 @@ MainScene::MainScene(Engine* engine)
 
 	viewMatrix = new glm::mat4(1);
 	projectionMatrix = new glm::mat4(1);
+	VPMatrix = new glm::mat4(1);
+	lightMatrix = new glm::mat4(1);
 
 	*viewMatrix = glm::lookAt(camera.transform->position, glm::vec3(0, 0, 0), glm::vec3(0, 1, 0));
 	*projectionMatrix = glm::perspective(45.0f, 1.5f, 0.2f, 2000.0f);
+	*VPMatrix = *projectionMatrix * *viewMatrix;
+
+	modelManager->SetVPMatrix(VPMatrix);
+	modelManager->SetLightMatrix(lightMatrix);
+	//modelManager->SetViewMatrix(viewMatrix);
+	//modelManager->SetProjectionMatrix(projectionMatrix);
 
 	ambientColor = new glm::vec4(0.1, 0.2, 0.05, 1.0);
 
 	lights["main"] = new Rendering::Light();
-	lights["main"]->position = glm::vec4(0, 3, -3, 1.0);
-	lights["main"]->color = glm::vec3(0.9, 1, 0.3);
+	lights["main"]->position = glm::vec4(0, 3, -3, 0.0);
+	lights["main"]->color = 0.5f * glm::vec3(0.9, 1, 0.3);
 	lights["main"]->range = 10.0;
 	Managers::LightManager::AddLight(lights["main"]);
 
@@ -35,6 +43,8 @@ MainScene::MainScene(Engine* engine)
 	lights["third"]->color = 0.5f * glm::vec3(1, 1, 1);
 	lights["third"]->range = 10.0;
 	Managers::LightManager::AddLight(lights["third"]);
+
+	*lightMatrix = lights["main"]->GetLightMatrix();
 
 	Managers::ShaderManager::CreateProgram("StdMat", "Resources\\Shaders\\Vertex_Shader.glsl", "Resources\\Shaders\\Fragment_Shader.glsl");
 
@@ -59,10 +69,12 @@ MainScene::MainScene(Engine* engine)
 
 	quad = new GameObjects::Quad();
 
+	lightFbo = Rendering::Framebuffer();
+	lightFbo.Create(800, 600);
 	fbo1 = Rendering::Framebuffer();
-	fbo1.Resize(800, 600);
+	fbo1.Create(800, 600);
 	fbo2 = Rendering::Framebuffer();
-	fbo2.Resize(800, 600);
+	fbo2.Create(800, 600);
 }
 
 MainScene::~MainScene()
@@ -77,14 +89,21 @@ void MainScene::Update()
 	camera.transform->position = glm::vec3(4 * glm::cos(0.5 * Time::time()), 2.5 + 2 * glm::sin(0.25 * Time::time()), 4 * glm::sin(0.5 * Time::time()));
 
 	*viewMatrix = glm::lookAt(camera.transform->position, player->transform->position, glm::vec3(0, 1, 0));
+	*VPMatrix = *projectionMatrix * *viewMatrix;
 
-	modelManager->SetViewMatrix(viewMatrix);
-	modelManager->SetProjectionMatrix(projectionMatrix);
 	modelManager->Update();
 }
 
 void MainScene::Draw()
 {
+	lightFbo.Bind();
+	{
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+		modelManager->Draw(camera.transform->position, *ambientColor);
+	}
+	lightFbo.Unbind();
+
 	fbo1.Bind();
 	{
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -98,13 +117,13 @@ void MainScene::Draw()
 	{
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-		quad->Draw(fbo1.GetColorTexture(), fbo1.GetDepthTexture(), 0, 800, 600);
+		quad->Draw(lightFbo.GetColorTexture(), lightFbo.GetDepthTexture(), 0, 1024, 1024);
 	}
 	fbo2.Unbind();
 
 	{
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-		quad->Draw(fbo2.GetColorTexture(), fbo2.GetDepthTexture(), 1, 800, 600);
+		quad->Draw(fbo2.GetColorTexture(), fbo2.GetDepthTexture(), 1, 1024, 1024);
 	}
 }

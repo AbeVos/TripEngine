@@ -3,7 +3,7 @@ layout(location = 0) in vec3 in_position;
 layout(location = 1) in vec2 in_uv;
 layout(location = 2) in vec3 in_normal;
 
-uniform mat4 projectionMatrix, viewMatrix, modelMatrix;
+uniform mat4 projectionMatrix, viewMatrix, modelMatrix, VPMatrix;
 
 uniform vec3 viewPosition;
 uniform float time;
@@ -22,5 +22,5 @@ void main( void )
 
 	vertex = worldPosition.xyz / worldPosition.w;
 	viewDirection = normalize(viewPosition - worldPosition.xyz);
-	gl_Position = projectionMatrix * viewMatrix * worldPosition;
+	gl_Position = VPMatrix * worldPosition;
 }

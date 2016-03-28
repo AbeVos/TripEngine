@@ -130,6 +130,7 @@
     <ClCompile Include="Import\OBJImporter.cpp" />
     <ClCompile Include="Import\TextureImporter.cpp" />
     <ClCompile Include="Input.cpp" />
+    <ClCompile Include="Rendering\Light.cpp" />
     <ClCompile Include="Managers\LightManager.cpp" />
     <ClCompile Include="Managers\ModelManager.cpp" />
     <ClCompile Include="Managers\SceneManager.cpp" />

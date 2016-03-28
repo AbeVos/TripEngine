@@ -23,6 +23,7 @@ namespace Scenes
 		Players::Player* player;
 		GameObjects::Quad* quad;
 
+		Rendering::Framebuffer lightFbo;
 		Rendering::Framebuffer fbo1;
 		Rendering::Framebuffer fbo2;
 

@@ -23,6 +23,8 @@ namespace TripEngine
 
 			glm::mat4* viewMatrix;
 			glm::mat4* projectionMatrix;
+			glm::mat4* VPMatrix;
+			glm::mat4* lightMatrix;
 
 			glm::vec4* ambientColor;
 

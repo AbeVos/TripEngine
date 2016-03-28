@@ -14,6 +14,8 @@ namespace TripEngine
 
 			glm::mat4* viewMatrix;
 			glm::mat4* projectionMatrix;
+			glm::mat4* VPMatrix;
+			glm::mat4* lightMatrix;
 
 		public:
 			ModelManager();
@@ -25,8 +27,10 @@ namespace TripEngine
 
 			void AddModel(GameObjects::Model* model);
 
-			virtual void SetViewMatrix(glm::mat4* matrix);
-			virtual void SetProjectionMatrix(glm::mat4* matrix);
+			void SetViewMatrix(glm::mat4* matrix);
+			void SetProjectionMatrix(glm::mat4* matrix);
+			void SetVPMatrix(glm::mat4* matrix);
+			void SetLightMatrix(glm::mat4* matrix);
 		};
 	}
 }

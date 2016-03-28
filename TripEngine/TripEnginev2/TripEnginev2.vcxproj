@@ -19,13 +19,13 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{64D604CB-7349-4143-B7AF-112981F1DC7D}</ProjectGuid>
-    <RootNamespace>ObjectShowcase</RootNamespace>
+    <ProjectGuid>{1FABB12D-0044-4D17-ADBB-2FFC68AB6940}</ProjectGuid>
+    <RootNamespace>TripEnginev2</RootNamespace>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v140</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
@@ -69,12 +69,8 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(SolutionDir)Dependencies\Include;$(SolutionDir);</IncludePath>
-    <LibraryPath>$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(NETFXKitsDir)Lib\um\x86;$(SolutionDir)Dependencies\lib\;$(SolutionDir)Debug\;</LibraryPath>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(SolutionDir)Dependencies\Include;$(SolutionDir);</IncludePath>
-    <LibraryPath>$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(NETFXKitsDir)Lib\um\x86;$(SolutionDir)Dependencies\lib\;$(SolutionDir)Release\;</LibraryPath>
+    <LibraryPath>$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(NETFXKitsDir)Lib\um\x86;$(SolutionDir)Dependencies\lib\;</LibraryPath>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(SolutionDir)Dependencies\include\;</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -82,9 +78,9 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
     </ClCompile>
-    <Link>
-      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;opengl32.lib;freeglut.lib;glew32.lib;TripEngineV2.lib;%(AdditionalDependencies)</AdditionalDependencies>
-    </Link>
+    <Lib>
+      <AdditionalLibraryDirectories>opengl32.lib;freeglut.lib;glew32.lib;</AdditionalLibraryDirectories>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -104,7 +100,6 @@
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;freeglut.lib;glew32.lib;TripEngineV1.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -121,19 +116,48 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Players\Player.cpp" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="Scenes\MainScene.cpp" />
+    <ClInclude Include="Actors\Actor.h" />
+    <ClInclude Include="Actors\Components\Camera.h" />
+    <ClInclude Include="Actors\Components\Component.h" />
+    <ClInclude Include="Actors\Components\Light.h" />
+    <ClInclude Include="Actors\Components\Model.h" />
+    <ClInclude Include="Actors\Quad.h" />
+    <ClInclude Include="Actors\Components\Transform.h" />
+    <ClInclude Include="Core\ContextInfo.h" />
+    <ClInclude Include="Core\FramebufferInfo.h" />
+    <ClInclude Include="Core\IListener.h" />
+    <ClInclude Include="Core\InitGLEW.h" />
+    <ClInclude Include="Core\InitGLUT.h" />
+    <ClInclude Include="Core\WindowInfo.h" />
+    <ClInclude Include="Engine.h" />
+    <ClInclude Include="Import\BMPHeader.h" />
+    <ClInclude Include="Import\OBJImporter.h" />
+    <ClInclude Include="Import\TextureImporter.h" />
+    <ClInclude Include="Managers\InputManager.h" />
+    <ClInclude Include="Managers\IScene.h" />
+    <ClInclude Include="Managers\LightManager.h" />
+    <ClInclude Include="Managers\ModelManager.h" />
+    <ClInclude Include="Managers\ObjectManager.h" />
+    <ClInclude Include="Managers\SceneManager.h" />
+    <ClInclude Include="Managers\ShaderManager.h" />
+    <ClInclude Include="Managers\TimeManager.h" />
+    <ClInclude Include="Render\Framebuffer.h" />
+    <ClInclude Include="Render\Vertex.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Players\Player.h" />
-    <ClInclude Include="Scenes\MainScene.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Shaders\Fragment_Shader.glsl" />
-    <None Include="Resources\Shaders\ppFragment.glsl" />
-    <None Include="Resources\Shaders\ppVertex.glsl" />
-    <None Include="Resources\Shaders\Vertex_Shader.glsl" />
+    <ClCompile Include="Actors\Actor.cpp" />
+    <ClCompile Include="Actors\Components\Camera.cpp" />
+    <ClCompile Include="Actors\Components\Model.cpp" />
+    <ClCompile Include="Actors\Components\Transform.cpp" />
+    <ClCompile Include="Actors\Quad.cpp" />
+    <ClCompile Include="Core\InitGLEW.cpp" />
+    <ClCompile Include="Core\InitGLUT.cpp" />
+    <ClCompile Include="Import\OBJImporter.cpp" />
+    <ClCompile Include="Import\TextureImporter.cpp" />
+    <ClCompile Include="Actors\Components\Component.cpp" />
+    <ClCompile Include="Managers\InputManager.cpp" />
+    <ClCompile Include="Managers\TimeManager.cpp" />
+    <ClCompile Include="Render\Framebuffer.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
