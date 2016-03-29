@@ -3,7 +3,7 @@
 using namespace TripEngine;
 using namespace Import;
 
-bool OBJImporter::ImportOBJ(const char* path, std::vector<GameObjects::Vertex>& out_vertices)
+bool OBJImporter::ImportOBJ(const char* path, std::vector<Render::Vertex>& out_vertices)
 {
 	std::cout << "OBJLoader:\tLoading OBJ file " << path << std::endl;
 
@@ -76,7 +76,7 @@ bool OBJImporter::ImportOBJ(const char* path, std::vector<GameObjects::Vertex>& 
 
 		glm::vec3 position = temp_vertices[vertexIndex - 1];
 
-		GameObjects::Vertex vertex = GameObjects::Vertex();
+		Render::Vertex vertex = Render::Vertex();
 		vertex.position = position;
 
 		out_vertices.push_back(vertex);

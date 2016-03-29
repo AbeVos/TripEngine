@@ -7,9 +7,9 @@ Actor::Actor()
 {
 	name = "GameObject";
 
-	transform = new Components::Transform();
+	transform = new Transform();
 	
-	components[ComponentTypes::Transform] = transform;
+	components[Transform] = transform;
 }
 
 Actor::~Actor()

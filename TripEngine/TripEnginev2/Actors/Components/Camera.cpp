@@ -1,11 +1,12 @@
 #include "Camera.h"
 
 using namespace TripEngine;
-using namespace GameObjects;
+using namespace Actors;
+using namespace Components;
 
-Camera::Camera() : GameObject()
+Camera::Camera(Transform* transform) : Component(transform)
 {
-
+	Managers::CameraManager::AddCamera(this);
 }
 
 Camera::~Camera()

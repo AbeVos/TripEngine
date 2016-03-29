@@ -4,6 +4,7 @@
 #include "WindowInfo.h"
 #include "InitGLEW.h"
 #include "IListener.h"
+#include "..\Managers\SceneManager.h"
 #include "..\Managers\InputManager.h"
 #include "..\Managers\TimeManager.h"
 #include <iostream>
@@ -28,10 +29,8 @@ namespace TripEngine
 			static void PrintOpenGLInfo(const Core::WindowInfo& windowInfo,
 				const Core::ContextInfo& context);
 
-			static void SetListener(IListener* iListener);
-
 		private:
-			static IListener* listener;
+			//static IListener* listener;
 			static WindowInfo windowInformation;
 
 			static void IdleCallback(void);

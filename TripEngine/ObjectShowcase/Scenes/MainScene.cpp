@@ -3,7 +3,7 @@
 using namespace TripEngine;
 using namespace Scenes;
 
-MainScene::MainScene(Engine* engine)
+MainScene::MainScene()
 {
 	camera = GameObjects::Camera();
 	camera.Translate(glm::vec3(3, 3, -3));

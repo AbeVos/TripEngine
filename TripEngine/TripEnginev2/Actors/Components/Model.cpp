@@ -6,9 +6,12 @@
 using namespace TripEngine;
 using namespace Actors;
 using namespace Components;
+using namespace Render;
 
-Model::Model(const char* path) : Component()
+Model::Model(Transform* transform, const char* path) : Component(transform)
 {
+	//this->transform = transform;
+
 	std::vector<Vertex> vertices;
 
 	Import::OBJImporter::ImportOBJ(path, vertices);
@@ -46,7 +49,7 @@ void Model::Draw(const glm::vec3& viewPos, const glm::vec4& ambientColor)
 {
 	glUseProgram(program);
 
-	glUniformMatrix4fv(glGetUniformLocation(program, "modelMatrix"), 1, false, &transformMatrix[0][0]);
+	glUniformMatrix4fv(glGetUniformLocation(program, "modelMatrix"), 1, false, &(*transform->GetTransformMatrix())[0][0]);
 	//glUniformMatrix4fv(glGetUniformLocation(program, "viewMatrix"), 1, false, &(*viewMatrix)[0][0]);
 	//glUniformMatrix4fv(glGetUniformLocation(program, "projectionMatrix"), 1, false, &(*projectionMatrix)[0][0]);
 	//	TODO: Set VPMatrix.
@@ -72,7 +75,7 @@ void Model::Draw(const glm::vec3& viewPos, const glm::vec4& ambientColor)
 		ss1 << "lights[" << i << "].position";
 		std::string uniformName = ss1.str();
 
-		glUniform4fv(glGetUniformLocation(program, uniformName.c_str()), 1, &Managers::LightManager::GetLight(i)->position[0]);
+		glUniform4fv(glGetUniformLocation(program, uniformName.c_str()), 1, &Managers::LightManager::GetLight(i)->GetTransform()->position[0]);
 
 		std::ostringstream ss2;
 		ss2 << "lights[" << i << "].color";
@@ -125,16 +128,6 @@ GLuint Model::GetVao()
 const std::vector<GLuint>& Model::GetVbos()
 {
 	return vbos;
-}
-
-void Model::SetViewMatrix(glm::mat4* matrix)
-{
-	viewMatrix = matrix;
-}
-
-void Model::SetProjectionMatrix(glm::mat4* matrix)
-{
-	projectionMatrix = matrix;
 }
 
 void Model::SetVPMatrix(glm::mat4* matrix)

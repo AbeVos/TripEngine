@@ -119,6 +119,7 @@
     <ClInclude Include="Actors\Actor.h" />
     <ClInclude Include="Actors\Components\Camera.h" />
     <ClInclude Include="Actors\Components\Component.h" />
+    <ClInclude Include="Actors\Components\ComponentType.h" />
     <ClInclude Include="Actors\Components\Light.h" />
     <ClInclude Include="Actors\Components\Model.h" />
     <ClInclude Include="Actors\Quad.h" />
@@ -133,6 +134,7 @@
     <ClInclude Include="Import\BMPHeader.h" />
     <ClInclude Include="Import\OBJImporter.h" />
     <ClInclude Include="Import\TextureImporter.h" />
+    <ClInclude Include="Managers\CameraManager.h" />
     <ClInclude Include="Managers\InputManager.h" />
     <ClInclude Include="Managers\IScene.h" />
     <ClInclude Include="Managers\LightManager.h" />
@@ -147,6 +149,7 @@
   <ItemGroup>
     <ClCompile Include="Actors\Actor.cpp" />
     <ClCompile Include="Actors\Components\Camera.cpp" />
+    <ClCompile Include="Actors\Components\Light.cpp" />
     <ClCompile Include="Actors\Components\Model.cpp" />
     <ClCompile Include="Actors\Components\Transform.cpp" />
     <ClCompile Include="Actors\Quad.cpp" />
@@ -155,7 +158,11 @@
     <ClCompile Include="Import\OBJImporter.cpp" />
     <ClCompile Include="Import\TextureImporter.cpp" />
     <ClCompile Include="Actors\Components\Component.cpp" />
+    <ClCompile Include="Managers\CameraManager.cpp" />
+    <ClCompile Include="Engine.cpp" />
     <ClCompile Include="Managers\InputManager.cpp" />
+    <ClCompile Include="Managers\LightManager.cpp" />
+    <ClCompile Include="Managers\SceneManager.cpp" />
     <ClCompile Include="Managers\TimeManager.cpp" />
     <ClCompile Include="Render\Framebuffer.cpp" />
   </ItemGroup>

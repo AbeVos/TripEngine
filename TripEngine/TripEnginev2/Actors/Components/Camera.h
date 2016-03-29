@@ -1,15 +1,23 @@
 #pragma once
-#include "GameObject.h"
+#include "Component.h"
+#include "..\..\Managers\CameraManager.h"
 
 namespace TripEngine
 {
-	namespace GameObjects
+	namespace Actors
 	{
-		class Camera : public GameObject
+		namespace Components
 		{
-		public:
-			Camera();
-			~Camera();
-		};
+			class Camera : public Component
+			{
+			public:
+				Camera(Transform* transform);
+				~Camera();
+
+				bool perspective;
+				float fov;
+				float nearClipPlane, farClipPlane;
+			};
+		}
 	}
 }

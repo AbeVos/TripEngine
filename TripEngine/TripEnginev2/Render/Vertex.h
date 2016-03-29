@@ -3,7 +3,7 @@
 
 namespace TripEngine
 {
-	namespace GameObjects
+	namespace Render
 	{
 		struct Vertex
 		{

@@ -19,10 +19,8 @@ namespace TripEngine
 			static std::map<std::string, IScene*> scenes;
 
 		public:
-			SceneManager();
-			~SceneManager();
+			static void Init();
 
-		public:
 			static void notifyBeginFrame();
 			static void notifyDisplayFrame();
 			static void notifyEndFrame();
@@ -32,6 +30,8 @@ namespace TripEngine
 			static void SetCurrentScene(const std::string& name);
 
 			static const Managers::IScene* GetCurrentScene();
+
+			static void DeleteSceneManager();
 		};
 	}
 }

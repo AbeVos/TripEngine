@@ -2,6 +2,7 @@
 #include <glew\glew.h>
 #include <glm\glm.hpp>
 #include "Component.h"
+#include "Transform.h"
 #include "..\..\Managers\LightManager.h"
 #include <vector>
 
@@ -13,9 +14,7 @@ namespace TripEngine
 		{
 			class Model : public Component
 			{
-			protected:
-				glm::mat4* viewMatrix;
-				glm::mat4* projectionMatrix;
+			private:
 				glm::mat4* VPMatrix;
 				glm::mat4* lightMatrix;
 
@@ -28,7 +27,7 @@ namespace TripEngine
 				unsigned int numVertices;
 
 			public:
-				Model(const char* path);
+				Model(Transform* transform, const char* path);
 				virtual ~Model();
 
 			private:
@@ -45,8 +44,6 @@ namespace TripEngine
 				virtual GLuint GetVao();
 				virtual const std::vector<GLuint>& GetVbos();
 
-				virtual void SetViewMatrix(glm::mat4* matrix);
-				virtual void SetProjectionMatrix(glm::mat4* matrix);
 				virtual void SetVPMatrix(glm::mat4* matrix);
 				virtual void SetLightMatrix(glm::mat4* matrix);
 			};

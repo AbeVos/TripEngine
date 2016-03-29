@@ -1,4 +1,5 @@
 #pragma once
+#include "Transform.h"
 
 namespace TripEngine
 {
@@ -6,19 +7,16 @@ namespace TripEngine
 	{
 		namespace Components
 		{
-			enum ComponentTypes {
-				Transform,
-				Camera,
-				Model,
-				Light,
-				Quad
-			};
-
 			class Component
 			{
+			protected:
+				Transform* transform;
+
 			public:
-				Component();
+				Component(Transform* transform);
 				virtual ~Component();
+
+				virtual Transform* GetTransform();
 			};
 		}
 	}

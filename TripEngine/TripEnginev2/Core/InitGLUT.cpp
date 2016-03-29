@@ -2,8 +2,9 @@
 
 using namespace TripEngine;
 using namespace Core;
+using namespace Managers;
 
-Core::IListener* InitGLUT::listener = NULL;
+//Core::IListener* InitGLUT::listener = NULL;
 Core::WindowInfo InitGLUT::windowInformation;
 
 double lastTime = 0;
@@ -86,26 +87,21 @@ void InitGLUT::DisplayCallback()
 
 	Managers::TimeManager::Update();
 
-	if (listener)
-	{
-		listener->BeginFrame();
-		listener->DisplayFrame();
 
-		glutSwapBuffers();
+	SceneManager::BeginFrame();
+	SceneManager::DisplayFrame();
 
-		listener->EndFrame();
-	}
+	glutSwapBuffers();
+
+	SceneManager::EndFrame();
 }
 
 void InitGLUT::ReshapeCallback(int width, int height)
 {
 	if (windowInformation.isReshapable == true)
 	{
-		if (listener)
-		{
-			listener->Reshape(width, height, windowInformation.width, windowInformation.height);
-		}
-
+		SceneManager::Reshape(width, height, windowInformation.width, windowInformation.height);
+		
 		windowInformation.width = width;
 		windowInformation.height = height;
 	}
@@ -139,9 +135,4 @@ void InitGLUT::PrintOpenGLInfo(const Core::WindowInfo& windowInfo,
 	std::cout << "GLUT:\tRenderer: " << renderer << std::endl;
 	std::cout << "GLUT:\tOpenGl version: " << version << std::endl;
 	std::cout << "******************************************************************" << std::endl;
-}
-
-void InitGLUT::SetListener(Core::IListener* iListener)
-{
-	listener = iListener;
 }

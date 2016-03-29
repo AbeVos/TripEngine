@@ -12,7 +12,7 @@ namespace TripEngine
 		class OBJImporter
 		{
 		public:
-			static bool ImportOBJ(const char* path, std::vector<GameObjects::Vertex>& out_vertices);
+			static bool ImportOBJ(const char* path, std::vector<Render::Vertex>& out_vertices);
 		};
 	}
 }

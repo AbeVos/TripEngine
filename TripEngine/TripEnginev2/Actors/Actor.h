@@ -2,6 +2,7 @@
 #include <glm\glm.hpp>
 #include <glm\gtc\matrix_transform.hpp>
 #include "Components\Component.h"
+#include "Components\ComponentType.h"
 #include "Components\Transform.h"
 #include <map>
 #include <string>
@@ -18,7 +19,7 @@ namespace TripEngine
 			char* name;
 
 			Transform* transform;
-			std::map<ComponentTypes, Component*> components;
+			std::map<ComponentType, Component*> components;
 
 		public:
 			Actor();
@@ -28,7 +29,7 @@ namespace TripEngine
 			virtual void Update();
 
 			virtual void AddComponent();
-			virtual const Component& GetComponent(ComponentTypes type);
+			virtual const Component& GetComponent(ComponentType type);
 		};
 	}
 }
