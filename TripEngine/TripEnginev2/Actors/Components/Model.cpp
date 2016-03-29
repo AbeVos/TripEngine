@@ -1,12 +1,13 @@
 #include "Model.h"
-#include "Vertex.h"
-#include "..\Import\OBJImporter.h"
+#include "..\..\Render\Vertex.h"
+#include "..\..\Import\OBJImporter.h"
 #include <sstream>
 
 using namespace TripEngine;
-using namespace GameObjects;
+using namespace Actors;
+using namespace Components;
 
-Model::Model(const char* path) : GameObject()
+Model::Model(const char* path) : Component()
 {
 	std::vector<Vertex> vertices;
 
