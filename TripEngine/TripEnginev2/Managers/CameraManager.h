@@ -11,12 +11,14 @@ namespace TripEngine
 		class CameraManager
 		{
 		private:
-			static int currentCameraIndex;
+			static Camera* currentCamera;
 			static std::vector<Camera*> cameras;
 
 		public:
 			static void AddCamera(Camera* camera);
-			static Camera* GetCurrentCamera();
+			static Camera* Current();
+			static void SetCurrent(int index);
+			static void SetCurrent(Camera* camera);
 		};
 	}
 }

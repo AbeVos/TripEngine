@@ -1,4 +1,5 @@
 #include "Model.h"
+#include "..\..\Managers\ModelManager.h"
 #include "..\..\Render\Vertex.h"
 #include "..\..\Import\OBJImporter.h"
 #include <sstream>
@@ -10,7 +11,7 @@ using namespace Render;
 
 Model::Model(Transform* transform, const char* path) : Component(transform)
 {
-	//this->transform = transform;
+	Managers::ModelManager::AddModel(this);
 
 	std::vector<Vertex> vertices;
 
@@ -45,14 +46,11 @@ Model::~Model()
 
 }
 
-void Model::Draw(const glm::vec3& viewPos, const glm::vec4& ambientColor)
+void Model::Draw(const glm::vec4& ambientColor)
 {
 	glUseProgram(program);
 
 	glUniformMatrix4fv(glGetUniformLocation(program, "modelMatrix"), 1, false, &(*transform->GetTransformMatrix())[0][0]);
-	//glUniformMatrix4fv(glGetUniformLocation(program, "viewMatrix"), 1, false, &(*viewMatrix)[0][0]);
-	//glUniformMatrix4fv(glGetUniformLocation(program, "projectionMatrix"), 1, false, &(*projectionMatrix)[0][0]);
-	//	TODO: Set VPMatrix.
 	glUniformMatrix4fv(glGetUniformLocation(program, "VPMatrix"), 1, false, &(*VPMatrix)[0][0]);
 	glUniformMatrix4fv(glGetUniformLocation(program, "lightMatrix"), 1, false, &(*lightMatrix)[0][0]);
 
@@ -64,7 +62,7 @@ void Model::Draw(const glm::vec3& viewPos, const glm::vec4& ambientColor)
 	glBindTexture(GL_TEXTURE_2D, textureNormal);
 	glUniform1i(glGetUniformLocation(program, "textureNormal"), 1);
 
-	glUniform3fv(glGetUniformLocation(program, "viewPosition"), 1, &viewPos[0]);
+	glUniform3fv(glGetUniformLocation(program, "viewPosition"), 1, &Managers::CameraManager::Current()->GetTransform()->position[0]);
 	glUniform4fv(glGetUniformLocation(program, "ambient"), 1, &ambientColor[0]);
 
 	glUniform1i(glGetUniformLocation(program, "numLights"), Managers::LightManager::GetNumLights());

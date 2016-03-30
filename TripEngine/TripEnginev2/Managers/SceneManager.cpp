@@ -3,6 +3,9 @@
 using namespace TripEngine;
 using namespace Managers;
 
+std::string SceneManager::currentScene;
+std::map<std::string, IScene*> SceneManager::scenes;
+
 void SceneManager::Init()
 {
 	glEnable(GL_DEPTH_TEST);
@@ -11,22 +14,22 @@ void SceneManager::Init()
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 }
 
-void SceneManager::notifyBeginFrame()
+void SceneManager::BeginFrame()
 {
 	scenes[currentScene]->Update();
 }
 
-void SceneManager::notifyDisplayFrame()
+void SceneManager::DisplayFrame()
 {
 	scenes[currentScene]->Draw();
 }
 
-void SceneManager::notifyEndFrame()
+void SceneManager::EndFrame()
 {
 
 }
 
-void SceneManager::notifyReshape(int width, int height, int prevWidth, int prevHeight)
+void SceneManager::Reshape(int width, int height, int prevWidth, int prevHeight)
 {
 
 }

@@ -3,15 +3,22 @@
 using namespace TripEngine;
 using namespace Managers;
 
-int CameraManager::currentCameraIndex = 0;
-//std::vector<Camera*> CameraManager::cameras;
-
 void CameraManager::AddCamera(Camera* camera)
 {
 	cameras.push_back(camera);
 }
 
-Camera* CameraManager::GetCurrentCamera()
+Camera* CameraManager::Current()
 {
-	return cameras[currentCameraIndex];
+	return currentCamera;
+}
+
+void CameraManager::SetCurrent(int index)
+{
+	currentCamera = cameras[index];
+}
+
+void CameraManager::SetCurrent(Camera* camera)
+{
+	currentCamera = camera;
 }

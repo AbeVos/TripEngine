@@ -21,15 +21,9 @@
     <ClCompile Include="Scenes\MainScene.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Players\Player.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Scenes\MainScene.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Players\Player.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

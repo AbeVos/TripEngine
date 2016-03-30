@@ -16,7 +16,7 @@ namespace TripEngine
 
 		public:
 			static void Update();
-			static void Draw();
+			static void Draw(const glm::vec4& ambientColor);
 
 			static void AddModel(Actors::Components::Model* model);
 		};

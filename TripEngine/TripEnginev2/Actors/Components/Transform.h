@@ -1,7 +1,6 @@
 #pragma once
 #include <glm\glm.hpp>
 #include <glm\gtc\matrix_transform.hpp>
-#include "Component.h"
 
 namespace TripEngine
 {
@@ -9,7 +8,7 @@ namespace TripEngine
 	{
 		namespace Components
 		{
-			class Transform : public Component
+			class Transform
 			{
 			private:
 				glm::mat4* transformMatrix;

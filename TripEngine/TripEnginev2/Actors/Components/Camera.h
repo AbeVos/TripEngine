@@ -1,7 +1,6 @@
 #pragma once
 #include <glm\glm.hpp>
 #include "Component.h"
-#include "..\..\Managers\CameraManager.h"
 
 namespace TripEngine
 {

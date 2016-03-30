@@ -1,4 +1,5 @@
 #include "Camera.h"
+#include "..\..\Managers\CameraManager.h"
 
 using namespace TripEngine;
 using namespace Actors;

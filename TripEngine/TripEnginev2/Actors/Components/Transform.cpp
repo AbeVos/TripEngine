@@ -4,7 +4,7 @@ using namespace TripEngine;
 using namespace Actors;
 using namespace Components;
 
-Transform::Transform() : Component(this)
+Transform::Transform()
 {
 	transformMatrix = new glm::mat4(1);
 
@@ -13,7 +13,7 @@ Transform::Transform() : Component(this)
 	scale = glm::vec3(1);
 }
 
-Transform::Transform(glm::vec3 position, glm::vec3 rotation, glm::vec3 scale) : Component(this)
+Transform::Transform(glm::vec3 position, glm::vec3 rotation, glm::vec3 scale)
 {
 	transformMatrix = new glm::mat4(1);
 
@@ -24,7 +24,7 @@ Transform::Transform(glm::vec3 position, glm::vec3 rotation, glm::vec3 scale) : 
 
 Transform::~Transform()
 {
-
+	delete transformMatrix;
 }
 
 glm::mat4* Transform::GetTransformMatrix()

@@ -1,4 +1,6 @@
 #pragma once
+#include <glm\glm.hpp>
+#include "ModelManager.h"
 #include "LightManager.h"
 
 namespace TripEngine
@@ -7,10 +9,10 @@ namespace TripEngine
 	{
 		class IScene
 		{
-		public:
-			IScene();
-			virtual ~IScene() = 0;
+		protected:
+			glm::vec4 *ambientColor;
 
+		public:
 			virtual void Update() = 0;
 			virtual void Draw() = 0;
 		};

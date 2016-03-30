@@ -45,9 +45,6 @@
     <ClInclude Include="Core\FramebufferInfo.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Core\IListener.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Core\InitGLEW.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -156,6 +153,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Engine.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Managers\ShaderManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Managers\ModelManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -1,13 +1,15 @@
 #pragma once
 #include <glm\glm.hpp>
 #include <glm\gtc\matrix_transform.hpp>
-#include "Components\Component.h"
 #include "Components\ComponentType.h"
 #include "Components\Transform.h"
+#include "Components\Component.h"
 #include <map>
 #include <string>
 
-using namespace TripEngine::Actors::Components;
+using namespace TripEngine;
+using namespace Actors;
+using namespace Components;
 
 namespace TripEngine
 {
@@ -29,7 +31,7 @@ namespace TripEngine
 			virtual void Update();
 
 			virtual void AddComponent(ComponentType type, Component* component);
-			virtual const Component& GetComponent(ComponentType type);
+			virtual Component* GetComponent(ComponentType type);
 		};
 	}
 }

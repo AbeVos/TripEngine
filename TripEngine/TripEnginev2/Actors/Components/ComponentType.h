@@ -8,11 +8,11 @@ namespace TripEngine
 		{
 			enum ComponentType
 			{
-				Transform,
-				Camera,
-				Model,
-				Light,
-				Quad
+				ct_Transform,
+				ct_Camera,
+				ct_Model,
+				ct_Light,
+				ct_Quad
 			};
 		}
 	}

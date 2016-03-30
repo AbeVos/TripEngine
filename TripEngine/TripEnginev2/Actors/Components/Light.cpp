@@ -1,4 +1,5 @@
 #include "Light.h"
+#include "..\..\Managers\LightManager.h"
 
 using namespace TripEngine;
 using namespace Actors;

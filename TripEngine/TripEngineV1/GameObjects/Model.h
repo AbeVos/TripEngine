@@ -6,9 +6,9 @@
 
 namespace TripEngine
 {
-	namespace GameObjects
+	namespace Components
 	{
-		class Model : public GameObject
+		class Model : public Actor
 		{
 		protected:
 			glm::mat4* viewMatrix;

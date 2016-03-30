@@ -10,6 +10,8 @@ using namespace TripEngine;
 
 int main(int argc, char **argv)
 {
+	Engine::Init();
+
 	Scenes::MainScene* scene = new Scenes::MainScene();
 
 	Managers::SceneManager::CreateScene("mainScene", scene);

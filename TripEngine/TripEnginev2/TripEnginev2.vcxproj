@@ -126,7 +126,6 @@
     <ClInclude Include="Actors\Components\Transform.h" />
     <ClInclude Include="Core\ContextInfo.h" />
     <ClInclude Include="Core\FramebufferInfo.h" />
-    <ClInclude Include="Core\IListener.h" />
     <ClInclude Include="Core\InitGLEW.h" />
     <ClInclude Include="Core\InitGLUT.h" />
     <ClInclude Include="Core\WindowInfo.h" />
@@ -162,7 +161,9 @@
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="Managers\InputManager.cpp" />
     <ClCompile Include="Managers\LightManager.cpp" />
+    <ClCompile Include="Managers\ModelManager.cpp" />
     <ClCompile Include="Managers\SceneManager.cpp" />
+    <ClCompile Include="Managers\ShaderManager.cpp" />
     <ClCompile Include="Managers\TimeManager.cpp" />
     <ClCompile Include="Render\Framebuffer.cpp" />
   </ItemGroup>

@@ -121,12 +121,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Players\Player.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Scenes\MainScene.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Players\Player.h" />
     <ClInclude Include="Scenes\MainScene.h" />
   </ItemGroup>
   <ItemGroup>

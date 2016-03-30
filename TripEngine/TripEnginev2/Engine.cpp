@@ -10,8 +10,6 @@ void Engine::Init()
 	FramebufferInfo framebufferInfo = FramebufferInfo();
 
 	InitGLUT::Init(window, context, framebufferInfo);
-
-	//InitGLUT::SetListener();
 }
 
 void Engine::Run()
