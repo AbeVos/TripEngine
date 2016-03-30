@@ -5,19 +5,6 @@ using namespace Scenes;
 
 MainScene::MainScene()
 {
-	camera = GameObjects::Camera();
-	camera.Translate(glm::vec3(3, 3, -3));
-
-	modelManager = new Managers::ModelManager();
-
-	viewMatrix = new glm::mat4(1);
-	projectionMatrix = new glm::mat4(1);
-	VPMatrix = new glm::mat4(1);
-	lightMatrix = new glm::mat4(1);
-
-	*viewMatrix = glm::lookAt(camera.transform->position, glm::vec3(0, 0, 0), glm::vec3(0, 1, 0));
-	*projectionMatrix = glm::perspective(45.0f, 1.5f, 0.2f, 2000.0f);
-	*VPMatrix = *projectionMatrix * *viewMatrix;
 
 	modelManager->SetVPMatrix(VPMatrix);
 	modelManager->SetLightMatrix(lightMatrix);

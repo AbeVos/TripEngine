@@ -28,7 +28,7 @@ namespace TripEngine
 		public:
 			virtual void Update();
 
-			virtual void AddComponent();
+			virtual void AddComponent(ComponentType type, Component* component);
 			virtual const Component& GetComponent(ComponentType type);
 		};
 	}

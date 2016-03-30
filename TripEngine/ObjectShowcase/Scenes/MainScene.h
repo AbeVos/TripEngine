@@ -1,12 +1,6 @@
 #pragma once
 #include <glm\glm.hpp>
 #include <glm\gtc\matrix_transform.hpp>
-#include <TripEngineV2\Engine.h>
-#include <TripEngineV2\Managers\TimeManager.h>
-#include <TripEngineV2\Import\TextureImporter.h>
-#include <TripEngineV2\Managers\ModelManager.h>
-#include <TripEngineV2\Managers\ShaderManager.h>
-#include <TripEngineV2\Managers\LightManager.h>
 #include <TripEngineV2\Managers\IScene.h>
 #include <TripEngineV2\Actors\Quad.h>
 #include <TripEngineV2\Render\Framebuffer.h>

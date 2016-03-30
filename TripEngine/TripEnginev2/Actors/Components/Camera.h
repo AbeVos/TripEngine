@@ -1,4 +1,5 @@
 #pragma once
+#include <glm\glm.hpp>
 #include "Component.h"
 #include "..\..\Managers\CameraManager.h"
 
@@ -10,9 +11,18 @@ namespace TripEngine
 		{
 			class Camera : public Component
 			{
+			private:
+				glm::mat4* VPMatrix;
+
 			public:
 				Camera(Transform* transform);
 				~Camera();
+
+			private:
+				void CalculateVPMatrix();
+				
+			public:
+				glm::mat4* GetVPMatrix();
 
 				bool perspective;
 				float fov;
