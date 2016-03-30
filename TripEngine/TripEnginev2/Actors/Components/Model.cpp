@@ -13,6 +13,8 @@ Model::Model(Transform* transform, const char* path) : Component(transform)
 {
 	Managers::ModelManager::AddModel(this);
 
+	VPMatrix = Managers::CameraManager::Current()->GetVPMatrix();
+
 	std::vector<Vertex> vertices;
 
 	Import::OBJImporter::ImportOBJ(path, vertices);
@@ -52,7 +54,7 @@ void Model::Draw(const glm::vec4& ambientColor)
 
 	glUniformMatrix4fv(glGetUniformLocation(program, "modelMatrix"), 1, false, &(*transform->GetTransformMatrix())[0][0]);
 	glUniformMatrix4fv(glGetUniformLocation(program, "VPMatrix"), 1, false, &(*VPMatrix)[0][0]);
-	glUniformMatrix4fv(glGetUniformLocation(program, "lightMatrix"), 1, false, &(*lightMatrix)[0][0]);
+	//glUniformMatrix4fv(glGetUniformLocation(program, "lightMatrix"), 1, false, &(*lightMatrix)[0][0]);
 
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, textureDiffuse);

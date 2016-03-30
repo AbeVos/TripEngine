@@ -9,6 +9,12 @@ MainScene::MainScene()
 	ambientColor = new glm::vec4(0.1, 0.2, 0.05, 1.0);
 
 	Managers::ShaderManager::CreateProgram("StdMat", "Resources\\Shaders\\Vertex_Shader.glsl", "Resources\\Shaders\\Fragment_Shader.glsl");
+
+	camera = new Actors::CameraObject();
+	camera->GetTransform()->position = glm::vec3(0, 0, 2);
+	Managers::CameraManager::SetCurrent((Camera*)camera->GetComponent(ct_Camera));
+	cube = new Actors::Cube();
+	cube->GetTransform()->position = glm::vec3(0, 2, 0);
 }
 
 MainScene::~MainScene()

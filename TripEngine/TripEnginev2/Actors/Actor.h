@@ -17,7 +17,7 @@ namespace TripEngine
 	{
 		class Actor
 		{
-		private:
+		protected:
 			char* name;
 
 			Transform* transform;
@@ -30,6 +30,7 @@ namespace TripEngine
 		public:
 			virtual void Update();
 
+			virtual Transform* GetTransform();
 			virtual void AddComponent(ComponentType type, Component* component);
 			virtual Component* GetComponent(ComponentType type);
 		};

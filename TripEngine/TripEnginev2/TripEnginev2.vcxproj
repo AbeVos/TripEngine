@@ -117,11 +117,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Actors\Actor.h" />
+    <ClInclude Include="Actors\CameraObject.h" />
     <ClInclude Include="Actors\Components\Camera.h" />
     <ClInclude Include="Actors\Components\Component.h" />
     <ClInclude Include="Actors\Components\ComponentType.h" />
     <ClInclude Include="Actors\Components\Light.h" />
     <ClInclude Include="Actors\Components\Model.h" />
+    <ClInclude Include="Actors\Cube.h" />
     <ClInclude Include="Actors\Quad.h" />
     <ClInclude Include="Actors\Components\Transform.h" />
     <ClInclude Include="Core\ContextInfo.h" />
@@ -147,10 +149,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Actors\Actor.cpp" />
+    <ClCompile Include="Actors\CameraObject.cpp" />
     <ClCompile Include="Actors\Components\Camera.cpp" />
     <ClCompile Include="Actors\Components\Light.cpp" />
     <ClCompile Include="Actors\Components\Model.cpp" />
     <ClCompile Include="Actors\Components\Transform.cpp" />
+    <ClCompile Include="Actors\Cube.cpp" />
     <ClCompile Include="Actors\Quad.cpp" />
     <ClCompile Include="Core\InitGLEW.cpp" />
     <ClCompile Include="Core\InitGLUT.cpp" />

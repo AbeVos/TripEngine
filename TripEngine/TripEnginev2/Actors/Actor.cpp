@@ -19,6 +19,11 @@ void Actor::Update()
 {
 }
 
+Transform* Actor::GetTransform()
+{
+	return transform;
+}
+
 void Actor::AddComponent(ComponentType type, Component* component)
 {
 	components[type] = component;
