@@ -10,8 +10,8 @@ Camera::Camera(Transform* transform) : Component(transform)
 	Managers::CameraManager::AddCamera(this);
 	VPMatrix = new glm::mat4(1);
 
-	fov = 60.0f;
-	nearClipPlane = 0.2f;
+	fov = 45.0f;
+	nearClipPlane = 0.1f;
 	farClipPlane = 1000.0f;
 }
 
@@ -22,7 +22,7 @@ Camera::~Camera()
 
 void Camera::CalculateVPMatrix()
 {
-	*VPMatrix = glm::perspective(45.0f, 1.25f, 0.1f, 1000.0f) * glm::inverse(*(transform->GetTransformMatrix()));
+	*VPMatrix = glm::perspective(fov, 1.3333f, nearClipPlane, farClipPlane) * glm::inverse(*(transform->GetTransformMatrix()));
 }
 
 glm::mat4* Camera::GetVPMatrix()
