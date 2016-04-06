@@ -24,6 +24,10 @@ MainScene::MainScene()
 
 	priest = new Actors::Priest();
 	priest->GetTransform()->rotation = glm::vec3(0, 2.5f, 0);
+
+	mushroom = new Actors::Mushroom();
+	mushroom->GetTransform()->position = glm::vec3(-1, 0, -2);
+	mushroom->GetTransform()->scale = glm::vec3(4, 4, 4);
 }
 
 MainScene::~MainScene()
@@ -31,11 +35,13 @@ MainScene::~MainScene()
 	delete ambientColor;
 	delete camera;
 	delete priest;
+	delete mushroom;
 }
 
 void MainScene::Update()
 {
 	priest->GetTransform()->rotation.y += Managers::TimeManager::delta();
+	mushroom->GetTransform()->scale.y = 4 + 0.2f * glm::sin(5 * Managers::TimeManager::time());
 }
 
 void MainScene::Draw()

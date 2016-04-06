@@ -10,6 +10,7 @@
 #include <TripEnginev2\Actors\CameraObject.h>
 #include <TripEnginev2\Actors\Lamp.h>
 #include <TripEngineV2\Actors\Priest.h>
+#include <TripEnginev2\Actors\Mushroom.h>
 
 using namespace TripEngine;
 
@@ -20,6 +21,7 @@ namespace Scenes
 	private:
 		Actors::CameraObject* camera;
 		Actors::Priest* priest;
+		Actors::Mushroom* mushroom;
 
 	public:
 		MainScene();
