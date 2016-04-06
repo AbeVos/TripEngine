@@ -3,6 +3,7 @@
 #include <glm\glm.hpp>
 #include "Component.h"
 #include "Transform.h"
+#include "..\..\Managers\ShaderManager.h"
 #include "..\..\Managers\CameraManager.h"
 #include "..\..\Managers\LightManager.h"
 #include <vector>

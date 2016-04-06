@@ -41,6 +41,8 @@ Model::Model(Transform* transform, const char* path) : Component(transform)
 
 	this->vao = vao;
 	this->vbos.push_back(vbo);
+
+	program = Managers::ShaderManager::GetProgram("StdMat");
 }
 
 Model::~Model()

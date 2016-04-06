@@ -123,6 +123,7 @@
     <ClInclude Include="Actors\Components\ComponentType.h" />
     <ClInclude Include="Actors\Components\Light.h" />
     <ClInclude Include="Actors\Components\Model.h" />
+    <ClInclude Include="Actors\Lamp.h" />
     <ClInclude Include="Actors\Priest.h" />
     <ClInclude Include="Actors\Quad.h" />
     <ClInclude Include="Actors\Components\Transform.h" />
@@ -154,6 +155,7 @@
     <ClCompile Include="Actors\Components\Light.cpp" />
     <ClCompile Include="Actors\Components\Model.cpp" />
     <ClCompile Include="Actors\Components\Transform.cpp" />
+    <ClCompile Include="Actors\Lamp.cpp" />
     <ClCompile Include="Actors\Priest.cpp" />
     <ClCompile Include="Actors\Quad.cpp" />
     <ClCompile Include="Core\InitGLEW.cpp" />

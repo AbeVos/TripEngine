@@ -1,5 +1,4 @@
 #include "MainScene.h"
-#include <TripEnginev2\Import\TextureImporter.h>
 
 using namespace TripEngine;
 using namespace Scenes;
@@ -11,10 +10,15 @@ MainScene::MainScene()
 	Managers::ShaderManager::CreateProgram("StdMat", "Resources\\Shaders\\Vertex_Shader.glsl", "Resources\\Shaders\\Fragment_Shader.glsl");
 
 	camera = new Actors::CameraObject();
-	camera->GetTransform()->position = glm::vec3(0, 0, 2);
+	camera->GetTransform()->position = glm::vec3(0, 1, 2);
 	Managers::CameraManager::SetCurrent((Camera*)camera->GetComponent(ct_Camera));
+
+	Actors::Lamp* lamp = new Actors::Lamp();
+	lamp->GetTransform()->position.y = 5.0f;
+	Managers::LightManager::AddLight((Light*)lamp->GetComponent(ct_Light));
+
 	priest = new Actors::Priest();
-	priest->GetTransform()->position = glm::vec3(0, 2, 0);
+	priest->GetTransform()->rotation = glm::vec3(0, 2.5f, 0);
 }
 
 MainScene::~MainScene()
