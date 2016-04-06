@@ -6,11 +6,11 @@ namespace TripEngine
 {
 	namespace Actors
 	{
-		class Cube : public Actor
+		class Priest : public Actor
 		{
 		public:
-			Cube();
-			virtual ~Cube();
+			Priest();
+			virtual ~Priest();
 		};
 	}
 }

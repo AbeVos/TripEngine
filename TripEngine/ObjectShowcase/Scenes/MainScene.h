@@ -5,7 +5,7 @@
 #include <TripEnginev2\Managers\CameraManager.h>
 #include <TripEnginev2\Managers\ShaderManager.h>
 #include <TripEnginev2\Actors\CameraObject.h>
-#include <TripEngineV2\Actors\Cube.h>
+#include <TripEngineV2\Actors\Priest.h>
 
 using namespace TripEngine;
 
@@ -15,7 +15,7 @@ namespace Scenes
 	{
 	private:
 		Actors::CameraObject* camera;
-		Actors::Cube* cube;
+		Actors::Priest* priest;
 
 	public:
 		MainScene();

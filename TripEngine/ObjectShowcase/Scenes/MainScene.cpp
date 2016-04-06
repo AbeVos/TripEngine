@@ -13,8 +13,8 @@ MainScene::MainScene()
 	camera = new Actors::CameraObject();
 	camera->GetTransform()->position = glm::vec3(0, 0, 2);
 	Managers::CameraManager::SetCurrent((Camera*)camera->GetComponent(ct_Camera));
-	cube = new Actors::Cube();
-	cube->GetTransform()->position = glm::vec3(0, 2, 0);
+	priest = new Actors::Priest();
+	priest->GetTransform()->position = glm::vec3(0, 2, 0);
 }
 
 MainScene::~MainScene()

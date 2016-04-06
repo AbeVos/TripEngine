@@ -99,10 +99,10 @@
     <ClInclude Include="Managers\CameraManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Actors\Cube.h">
+    <ClInclude Include="Actors\CameraObject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Actors\CameraObject.h">
+    <ClInclude Include="Actors\Priest.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -167,10 +167,10 @@
     <ClCompile Include="Managers\ModelManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Actors\Cube.cpp">
+    <ClCompile Include="Actors\CameraObject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Actors\CameraObject.cpp">
+    <ClCompile Include="Actors\Priest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
