@@ -56,4 +56,5 @@ void main( void )
 	}
 
 	out_color = linearColor;
+	//out_color = texture(textureDiffuse, uv).rgb;
 }

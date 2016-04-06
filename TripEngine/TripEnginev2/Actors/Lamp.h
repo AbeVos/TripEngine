@@ -11,6 +11,10 @@ namespace TripEngine
 		public:
 			Lamp();
 			~Lamp();
+
+		public:
+			void SetColor(glm::vec3 color);
+			void SetRange(float range);
 		};
 	}
 }

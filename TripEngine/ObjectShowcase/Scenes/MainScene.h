@@ -2,9 +2,11 @@
 #include <glm\glm.hpp>
 #include <glm\gtc\matrix_transform.hpp>
 #include <TripEngineV2\Managers\IScene.h>
+#include <TripEnginev2\Managers\SceneManager.h>
 #include <TripEnginev2\Managers\CameraManager.h>
 #include <TripEnginev2\Managers\LightManager.h>
 #include <TripEnginev2\Managers\ShaderManager.h>
+#include <TripEnginev2\Managers\TimeManager.h>
 #include <TripEnginev2\Actors\CameraObject.h>
 #include <TripEnginev2\Actors\Lamp.h>
 #include <TripEngineV2\Actors\Priest.h>

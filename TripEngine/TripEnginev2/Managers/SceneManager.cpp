@@ -17,6 +17,7 @@ void SceneManager::Init()
 void SceneManager::BeginFrame()
 {
 	scenes[currentScene]->Update();
+	Managers::ModelManager::Update();
 }
 
 void SceneManager::DisplayFrame()

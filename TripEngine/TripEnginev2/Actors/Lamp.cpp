@@ -13,3 +13,13 @@ Lamp::~Lamp()
 {
 
 }
+
+void Lamp::SetColor(glm::vec3 color)
+{
+	((Light*)GetComponent(ct_Light))->color = color;
+}
+
+void Lamp::SetRange(float range)
+{
+	((Light*)GetComponent(ct_Light))->range = range;
+}

@@ -7,6 +7,7 @@ MainScene::MainScene()
 {
 	ambientColor = new glm::vec4(0.1, 0.2, 0.05, 1.0);
 
+	Managers::SceneManager::Init();
 	Managers::ShaderManager::CreateProgram("StdMat", "Resources\\Shaders\\Vertex_Shader.glsl", "Resources\\Shaders\\Fragment_Shader.glsl");
 
 	camera = new Actors::CameraObject();
@@ -14,8 +15,12 @@ MainScene::MainScene()
 	Managers::CameraManager::SetCurrent((Camera*)camera->GetComponent(ct_Camera));
 
 	Actors::Lamp* lamp = new Actors::Lamp();
-	lamp->GetTransform()->position.y = 5.0f;
-	Managers::LightManager::AddLight((Light*)lamp->GetComponent(ct_Light));
+	lamp->GetTransform()->position = glm::vec3(1, 5, 3);
+	lamp->SetColor(glm::vec3(1, 0.8f, 0.5f));
+
+	Actors::Lamp* lamp2 = new Actors::Lamp();
+	lamp2->GetTransform()->position = glm::vec3(-3, 1, -2);
+	lamp2->SetColor(glm::vec3(0.4f, 0.8f, 0.9f));
 
 	priest = new Actors::Priest();
 	priest->GetTransform()->rotation = glm::vec3(0, 2.5f, 0);
@@ -24,11 +29,13 @@ MainScene::MainScene()
 MainScene::~MainScene()
 {
 	delete ambientColor;
+	delete camera;
+	delete priest;
 }
 
 void MainScene::Update()
 {
-	Managers::ModelManager::Update();
+	priest->GetTransform()->rotation.y += Managers::TimeManager::delta();
 }
 
 void MainScene::Draw()

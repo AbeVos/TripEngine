@@ -8,6 +8,8 @@ using namespace Components;
 Light::Light(Transform* transform) : Component(transform)
 {
 	Managers::LightManager::AddLight(this);
+	range = 10.0f;
+	color = glm::vec3(1);
 }
 
 Light::~Light()
