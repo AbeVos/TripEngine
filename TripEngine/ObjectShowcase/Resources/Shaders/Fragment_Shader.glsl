@@ -12,7 +12,6 @@ uniform struct Light
 {
 	vec4 position;
 	vec3 color;
-	float range;
 } lights[MAX_LIGHTS];
 
 uniform sampler2D textureDiffuse;
@@ -33,8 +32,8 @@ vec3 applyLight(Light light)
 	}
 	else
 	{
-		lightDirection = normalize(light.position.xyz - vertex);
-		attenuation = (light.range - distance(light.position.xyz, vertex)) / light.range;
+		lightDirection = normalize(vertex - light.position.xyz );
+		attenuation = 1 /  distance(light.position.xyz, vertex);
 	}
 
 	vec3 color = texture(textureDiffuse, uv).rgb;

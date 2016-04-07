@@ -14,7 +14,7 @@ namespace TripEngine
 
 		public:
 			void SetColor(glm::vec3 color);
-			void SetRange(float range);
+			void SetType(int type);
 		};
 	}
 }

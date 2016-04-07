@@ -77,19 +77,14 @@ void Model::Draw(const glm::vec4& ambientColor)
 		ss1 << "lights[" << i << "].position";
 		std::string uniformName = ss1.str();
 
-		glUniform4fv(glGetUniformLocation(program, uniformName.c_str()), 1, &Managers::LightManager::GetLight(i)->GetTransform()->position[0]);
+		glm::vec4 light = glm::vec4(Managers::LightManager::GetLight(i)->GetTransform()->position, Managers::LightManager::GetLight(i)->type);
+		glUniform4fv(glGetUniformLocation(program, uniformName.c_str()), 1, &light[0]);
 
 		std::ostringstream ss2;
 		ss2 << "lights[" << i << "].color";
 		uniformName = ss2.str();
 
 		glUniform3fv(glGetUniformLocation(program, uniformName.c_str()), 1, &Managers::LightManager::GetLight(i)->color[0]);
-
-		std::ostringstream ss3;
-		ss3 << "lights[" << i << "].range";
-		uniformName = ss3.str();
-
-		glUniform1f(glGetUniformLocation(program, uniformName.c_str()), Managers::LightManager::GetLight(i)->range);
 	}
 
 	glBindVertexArray(vao);

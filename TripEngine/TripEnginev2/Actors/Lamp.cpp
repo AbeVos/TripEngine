@@ -19,7 +19,7 @@ void Lamp::SetColor(glm::vec3 color)
 	((Light*)GetComponent(ct_Light))->color = color;
 }
 
-void Lamp::SetRange(float range)
+void Lamp::SetType(int type)
 {
-	((Light*)GetComponent(ct_Light))->range = range;
+	((Light*)GetComponent(ct_Light))->type = type;
 }

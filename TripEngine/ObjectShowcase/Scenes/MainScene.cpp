@@ -12,22 +12,25 @@ MainScene::MainScene()
 
 	camera = new Actors::CameraObject();
 	camera->GetTransform()->position = glm::vec3(0, 1, 2);
+	camera->GetTransform()->rotation.x = -0.2f;
 	Managers::CameraManager::SetCurrent((Camera*)camera->GetComponent(ct_Camera));
 
 	Actors::Lamp* lamp = new Actors::Lamp();
 	lamp->GetTransform()->position = glm::vec3(1, 5, 3);
 	lamp->SetColor(glm::vec3(1, 0.8f, 0.5f));
+	lamp->SetType(0);
 
 	Actors::Lamp* lamp2 = new Actors::Lamp();
 	lamp2->GetTransform()->position = glm::vec3(-3, 1, -2);
 	lamp2->SetColor(glm::vec3(0.4f, 0.8f, 0.9f));
+	lamp2->SetType(1);
 
 	priest = new Actors::Priest();
 	priest->GetTransform()->rotation = glm::vec3(0, 2.5f, 0);
 
-	mushroom = new Actors::Mushroom();
-	mushroom->GetTransform()->position = glm::vec3(-1, 0, -2);
-	mushroom->GetTransform()->scale = glm::vec3(4, 4, 4);
+	//mushroom = new Actors::Mushroom();
+	//mushroom->GetTransform()->position = glm::vec3(-1, 0, -2);
+	//mushroom->GetTransform()->scale = glm::vec3(4, 4, 4);
 
 	fbo1 = Render::Framebuffer();
 	fbo1.Create(800, 600);
@@ -50,7 +53,7 @@ MainScene::~MainScene()
 void MainScene::Update()
 {
 	priest->GetTransform()->rotation.y += Managers::TimeManager::delta();
-	mushroom->GetTransform()->scale.y = 4 + 0.2f * glm::sin(5 * Managers::TimeManager::time());
+	//mushroom->GetTransform()->scale.y = 4 + 0.2f * glm::sin(5 * Managers::TimeManager::time());
 }
 
 void MainScene::Draw()

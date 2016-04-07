@@ -14,6 +14,7 @@ namespace TripEngine
 			public:
 				glm::vec3 color;
 				float range;
+				int type;
 
 				Light(Transform* transform);
 				virtual ~Light() override;

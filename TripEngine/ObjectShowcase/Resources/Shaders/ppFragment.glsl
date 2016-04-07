@@ -14,7 +14,7 @@ uniform int width, height;
 
 in vec2 uv;
 
-float intensity(float treshold, vec2 uv)
+float intensity(vec2 uv)
 {
 	vec3 color = texture(texture_color, uv).rgb;
 	//return step(treshold, (color.r + color.g + color.b) / 3.0);
@@ -27,13 +27,13 @@ void main()
 	
 	if (pass == 0)
 	{
-		float bloom = intensity(0.8, uv) * weights[0];
+		float bloom = intensity(uv) * weights[0];
 		float offset = 3.0 / width;
 
 		for (int i = 1; i < 6; i++)
 		{
-			bloom += (intensity(0.8, uv + vec2(i * offset, 0)) +
-				intensity(0.8, uv + vec2(-i * offset, 0))) * weights[i];
+			bloom += (intensity(uv + vec2(i * offset, 0)) +
+				intensity(uv + vec2(-i * offset, 0))) * weights[i];
 		}
 
 		out_color = vec4(color.rgb, bloom);
@@ -49,6 +49,7 @@ void main()
 				texture(texture_color, uv + vec2(0, -i * offset)).a) * weights[i];
 		}
 
-		out_color = vec4((1.5 - color.rgb) * bloom + color.rgb, 1);
+		out_color = vec4((1.5 - color.rgb) * 5 * bloom + color.rgb, 1);
+		//out_color = vec4(5 * bloom);
 	}
 }
