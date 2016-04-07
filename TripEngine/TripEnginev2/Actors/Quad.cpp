@@ -20,13 +20,13 @@ Quad::~Quad()
 
 void Quad::Create()
 {
-	Managers::ShaderManager::CreateProgram("postProcessing", "Resources\\Shaders\\ppVertex.glsl", "Resources\\Shaders\\ppFragment.glsl");
+	Managers::ShaderManager::CreateProgram("postProcessing", "Resources/Shaders/ppVertex.glsl", "Resources/Shaders/ppFragment.glsl");
 	program = Managers::ShaderManager::GetProgram("postProcessing");
 
 	struct Vertex {
 		glm::vec3 position;
 		glm::vec2 texcoord;
-		Vertex(const glm::vec3 &pos, const glm::vec2 &tc) { position = pos; texcoord = tc; }
+		Vertex(const glm::vec3 &pos, const glm::vec2 &uv) { position = pos; texcoord = uv; }
 	};
 
 	GLuint vao;
@@ -55,7 +55,6 @@ void Quad::Create()
 	glEnableVertexAttribArray(0); glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)0);
 	glEnableVertexAttribArray(1); glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)sizeof(glm::vec3));
 	numIndices = 6;
-
 
 	//draw
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);

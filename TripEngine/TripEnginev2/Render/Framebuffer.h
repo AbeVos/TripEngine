@@ -5,7 +5,7 @@
 
 namespace TripEngine
 {
-	namespace Rendering
+	namespace Render
 	{
 		class Framebuffer
 		{

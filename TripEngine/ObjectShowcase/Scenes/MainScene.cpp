@@ -28,6 +28,11 @@ MainScene::MainScene()
 	mushroom = new Actors::Mushroom();
 	mushroom->GetTransform()->position = glm::vec3(-1, 0, -2);
 	mushroom->GetTransform()->scale = glm::vec3(4, 4, 4);
+
+	fbo1 = Render::Framebuffer();
+	fbo1.Create(800, 600);
+
+	quad = new Actors::Quad();
 }
 
 MainScene::~MainScene()
@@ -36,6 +41,8 @@ MainScene::~MainScene()
 	delete camera;
 	delete priest;
 	delete mushroom;
+
+	fbo1.~Framebuffer();
 }
 
 void MainScene::Update()
@@ -46,10 +53,14 @@ void MainScene::Update()
 
 void MainScene::Draw()
 {
+	//fbo1.Bind();
 	{
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		glClearColor(ambientColor->r, ambientColor->g, ambientColor->b, ambientColor->a);
 
 		Managers::ModelManager::Draw(*ambientColor);
 	}
+	//fbo1.Unbind();
+
+	//quad->Draw(fbo1.GetColorTexture(), fbo1.GetDepthTexture(), 0, 800, 600);
 }

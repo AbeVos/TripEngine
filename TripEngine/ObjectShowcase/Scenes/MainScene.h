@@ -7,10 +7,12 @@
 #include <TripEnginev2\Managers\LightManager.h>
 #include <TripEnginev2\Managers\ShaderManager.h>
 #include <TripEnginev2\Managers\TimeManager.h>
+#include <TripEnginev2\Render\Framebuffer.h>
 #include <TripEnginev2\Actors\CameraObject.h>
 #include <TripEnginev2\Actors\Lamp.h>
 #include <TripEngineV2\Actors\Priest.h>
 #include <TripEnginev2\Actors\Mushroom.h>
+#include <TripEnginev2\Actors\Quad.h>
 
 using namespace TripEngine;
 
@@ -22,6 +24,10 @@ namespace Scenes
 		Actors::CameraObject* camera;
 		Actors::Priest* priest;
 		Actors::Mushroom* mushroom;
+
+		Render::Framebuffer fbo1;
+
+		Actors::Quad* quad;
 
 	public:
 		MainScene();

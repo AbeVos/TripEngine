@@ -1,7 +1,7 @@
 #include "Framebuffer.h"
 
 using namespace TripEngine;
-using namespace Rendering;
+using namespace Render;
 
 Framebuffer::Framebuffer()
 {
