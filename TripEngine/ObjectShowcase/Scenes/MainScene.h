@@ -26,6 +26,7 @@ namespace Scenes
 		Actors::Mushroom* mushroom;
 
 		Render::Framebuffer fbo1;
+		Render::Framebuffer fbo2;
 
 		Actors::Quad* quad;
 
