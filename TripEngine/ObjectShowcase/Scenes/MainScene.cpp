@@ -58,6 +58,9 @@ void MainScene::Update()
 
 void MainScene::Draw()
 {
+	glCullFace(GL_FRONT);
+	glCullFace(GL_BACK);
+
 	fbo1.Bind();
 	{
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);

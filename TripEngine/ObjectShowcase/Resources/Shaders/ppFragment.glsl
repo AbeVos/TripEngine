@@ -21,6 +21,18 @@ float intensity(vec2 uv)
 	return 2 * pow((color.r + color.g + color.b) / 3.0, 16);
 }
 
+vec3 reinhard (vec3 color)
+{
+	const float gamma = 1;
+  
+    // Reinhard tone mapping
+    vec3 mapped = color / (color + vec3(1.0));
+    // Gamma correction 
+    mapped = pow(mapped, vec3(1.0 / gamma));
+  
+    return mapped;
+}
+
 void main()
 {
 	vec4 color = texture(texture_color, uv);
@@ -50,6 +62,8 @@ void main()
 		}
 
 		out_color = vec4((1.5 - color.rgb) * 5 * bloom + color.rgb, 1);
-		//out_color = vec4(5 * bloom);
+		//out_color = vec4(bloom);
+
+		//out_color.rgb = reinhard(out_color.rgb);
 	}
 }

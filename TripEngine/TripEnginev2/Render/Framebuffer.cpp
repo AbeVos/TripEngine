@@ -25,8 +25,8 @@ void Framebuffer::GenerateFBO(unsigned int width, unsigned int height)
 	glGenFramebuffers(1, &FBO);                     //Generate a framebuffer object(FBO)
 	glBindFramebuffer(GL_FRAMEBUFFER, FBO);         // and bind it to the pipeline
 
-	GenerateColorTexture(width, height);//generate empty texture
-	GenerateDepthTexture(width, height);//generate empty texture
+	GenerateColorTexture(width, height);	//generate empty texture
+	GenerateDepthTexture(width, height);	//generate empty texture
 
 	unsigned int attachment_index_color_texture = 0;   //to keep track of our textures
 													   //bind textures to pipeline. texture_depth is optional .0 is the mipmap level. 0 is the heightest
