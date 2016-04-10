@@ -68,20 +68,26 @@ void Quad::Update()
 
 }
 
-void Quad::Draw(const unsigned int& color, const unsigned int& depth, const int& pass, const int& width, const int& height)
+void Quad::Draw(const unsigned int& color, const unsigned int& depth, const unsigned int& shadow)
 {
 	glUseProgram(program);
 
+	//	Bind matrices
+	glUniformMatrix4fv(glGetUniformLocation(program, "VPMatrix"), 1, false, &(*Managers::CameraManager::Current()->GetVPMatrix())[0][0]);
+	glUniformMatrix4fv(glGetUniformLocation(program, "lightMatrix"), 1, false, &(Managers::LightManager::GetLight(0)->GetLightMatrix())[0][0]);
+
+	glUniform3fv(glGetUniformLocation(program, "cameraPosition"), 1, &Managers::CameraManager::Current()->GetTransform()->position[0]);
+
+	//	Bind textures
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, color);
 	glUniform1i(glGetUniformLocation(program, "texture_color"), 0);
 	glActiveTexture(GL_TEXTURE0 + 1);
 	glBindTexture(GL_TEXTURE_2D, depth);
 	glUniform1i(glGetUniformLocation(program, "texture_depth"), 1);
-
-	glUniform1i(glGetUniformLocation(program, "pass"), pass);
-	glUniform1i(glGetUniformLocation(program, "width"), width);
-	glUniform1i(glGetUniformLocation(program, "height"), height);
+	glActiveTexture(GL_TEXTURE0 + 2);
+	glBindTexture(GL_TEXTURE_2D, shadow);
+	glUniform1i(glGetUniformLocation(program, "shadowMap"), 2);
 
 	glBindVertexArray(vao);
 	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);

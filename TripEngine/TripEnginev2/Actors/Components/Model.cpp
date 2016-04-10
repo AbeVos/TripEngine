@@ -54,18 +54,18 @@ void Model::Draw(const GLuint& shadowMap)
 {
 	glUseProgram(program);
 
+	//	Bind matrices
 	glUniformMatrix4fv(glGetUniformLocation(program, "modelMatrix"), 1, false, &(*transform->GetTransformMatrix())[0][0]);
 	glUniformMatrix4fv(glGetUniformLocation(program, "VPMatrix"), 1, false, &(*Managers::CameraManager::Current()->GetVPMatrix())[0][0]);
 	glUniformMatrix4fv(glGetUniformLocation(program, "lightMatrix"), 1, false, &(Managers::LightManager::GetLight(0)->GetLightMatrix())[0][0]);
 
+	//	Bind textures
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, textureDiffuse);
 	glUniform1i(glGetUniformLocation(program, "textureDiffuse"), 0);
-
 	glActiveTexture(GL_TEXTURE0 + 1);
 	glBindTexture(GL_TEXTURE_2D, textureNormal);
 	glUniform1i(glGetUniformLocation(program, "textureNormal"), 1);
-
 	glActiveTexture(GL_TEXTURE0 + 2);
 	glBindTexture(GL_TEXTURE_2D, shadowMap);
 	glUniform1i(glGetUniformLocation(program, "shadowMap"), 2);

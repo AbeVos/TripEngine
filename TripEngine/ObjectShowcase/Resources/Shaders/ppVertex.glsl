@@ -6,7 +6,6 @@ out vec2 uv;
 
 void main( void )
 {
-	uv = in_uv;
-
 	gl_Position = vec4(in_position, 1);
+	uv = in_uv;
 }

@@ -14,6 +14,7 @@
 #include <TripEnginev2\Actors\Mushroom.h>
 #include <TripEnginev2\Actors\Platform.h>
 #include <TripEnginev2\Actors\Quad.h>
+#include <vector>
 
 using namespace TripEngine;
 
@@ -25,6 +26,7 @@ namespace Scenes
 		Actors::CameraObject* camera;
 		Actors::Priest* priest;
 		Actors::Mushroom* mushroom;
+		std::vector<Actors::Mushroom*> mushrooms;
 		Actors::Platform* platform;
 
 		Render::Framebuffer fbo1;

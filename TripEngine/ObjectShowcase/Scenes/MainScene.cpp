@@ -30,6 +30,20 @@ MainScene::MainScene()
 	mushroom->GetTransform()->position = glm::vec3(1, 0, -2);
 	mushroom->GetTransform()->scale = glm::vec3(4, 4, 4);
 
+	mushrooms = std::vector<Actors::Mushroom*>();
+
+	Actors::Mushroom* mush1 = new Actors::Mushroom();
+	mush1->GetTransform()->position = glm::vec3(1.6f, 0, 1.8f);
+	mush1->GetTransform()->rotation.y = 2.5f;
+	mush1->GetTransform()->scale = glm::vec3(3.5f, 3.0f, 3.5f);
+	mushrooms.push_back(mush1);
+
+	Actors::Mushroom* mush2 = new Actors::Mushroom();
+	mush2->GetTransform()->position = glm::vec3(-1.5f, 0, 1.4f);
+	mush2->GetTransform()->rotation.y = -3.0f;
+	mush2->GetTransform()->scale = glm::vec3(3.0f, 5.0f, 3.0f);
+	mushrooms.push_back(mush2);
+
 	platform = new Actors::Platform();
 
 	fbo1 = Render::Framebuffer();
@@ -53,10 +67,19 @@ void MainScene::Update()
 {
 	float time = Managers::TimeManager::time();
 
-	camera->GetTransform()->position = glm::vec3(2 * glm::cos(0.5f * time), 1, 2 * glm::sin(0.5f * time));
+	priest->GetTransform()->position = glm::vec3(glm::cos(-time), 0, glm::sin(-time));
+	priest->GetTransform()->rotation.y = time;
+
+	//camera->GetTransform()->position.z = 5 + glm::sin(time);
+	camera->GetTransform()->position = priest->GetTransform()->position + glm::vec3(3 * glm::cos(0.5f * time), 1, 3 * glm::sin(0.5f * time));
 	camera->GetTransform()->rotation.y = -0.5 * (time - 3.1415f);
-	priest->GetTransform()->rotation.y += Managers::TimeManager::delta();
-	mushroom->GetTransform()->scale.y = 4 + 0.2f * glm::sin(5 * Managers::TimeManager::time());
+
+	mushroom->GetTransform()->scale.y = 4 + 0.2f * glm::sin(5 * time);
+
+	for (int i = 0; i < mushrooms.size(); i++)
+	{
+		mushrooms[i]->GetTransform()->scale.y = 4 + 0.2f * glm::sin(5 * time + i + 1);
+	}
 }
 
 void MainScene::Draw()
@@ -84,6 +107,6 @@ void MainScene::Draw()
 
 	{
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-		quad->Draw(fbo2.GetColorTexture(), fbo2.GetDepthTexture(), 0, 800, 600);
+		quad->Draw(fbo2.GetColorTexture(), fbo2.GetDepthTexture(), fbo1.GetDepthTexture());
 	}
 }

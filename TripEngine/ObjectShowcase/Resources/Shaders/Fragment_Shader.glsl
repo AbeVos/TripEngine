@@ -56,7 +56,7 @@ void main( void )
 	float closestDepth = texture(shadowMap, projCoords.xy).r;
 	float currentDepth = projCoords.z - 0.001;
 
-	float attenuation = currentDepth > closestDepth  ? 0.0 : 1.0;
+	float attenuation = currentDepth > closestDepth ? 0.0 : 1.0;
 
 	vec3 linearColor = attenuation * applyLight(lights[0]);
 
@@ -67,11 +67,3 @@ void main( void )
 
 	out_color = (linearColor + ambient.rgb) * texture(textureDiffuse, uv).rgb;
 }
-
-/*void main (void)
-{
-	//out_color = lightSpace;
-	float attenuation = texture(shadowMap, 0.5 * (lightSpace.xy + 1)).r;
-
-	out_color = vec3(lightSpace.z);
-}*/
