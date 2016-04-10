@@ -19,6 +19,7 @@ namespace TripEngine
 				Light(Transform* transform);
 				virtual ~Light() override;
 
+				glm::vec3 GetLightDirection();
 				glm::mat4 GetLightMatrix();
 			};
 		}

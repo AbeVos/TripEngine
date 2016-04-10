@@ -12,11 +12,19 @@ void ModelManager::Update()
 	}
 }
 
-void ModelManager::Draw(const glm::vec4& ambientColor)
+void ModelManager::Draw(const GLuint& shadowMap)
 {
 	for (unsigned int i = 0; i < models.size(); i++)
 	{
-		models[i]->Draw(ambientColor);
+		models[i]->Draw(shadowMap);
+	}
+}
+
+void ModelManager::DrawDepth()
+{
+	for (unsigned int i = 0; i < models.size(); i++)
+	{
+		models[i]->DrawDepth();
 	}
 }
 

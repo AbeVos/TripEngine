@@ -23,6 +23,7 @@ namespace TripEngine
 				GLuint vao;
 				std::vector<GLuint> vbos;
 				GLuint program;
+				GLuint shadowProgram;
 				unsigned int textureDiffuse;
 				unsigned int textureNormal;
 
@@ -37,7 +38,8 @@ namespace TripEngine
 				void SetLightUniform(GLuint program, const char* name, int index, const T& value);
 
 			public:
-				virtual void Draw(const glm::vec4& ambientColor);
+				virtual void Draw(const GLuint& shadowMap);
+				virtual void DrawDepth();
 
 				virtual void SetProgram(GLuint program);
 				virtual void SetDiffuse(unsigned int texture);

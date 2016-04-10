@@ -125,6 +125,7 @@
     <ClInclude Include="Actors\Components\Model.h" />
     <ClInclude Include="Actors\Lamp.h" />
     <ClInclude Include="Actors\Mushroom.h" />
+    <ClInclude Include="Actors\Platform.h" />
     <ClInclude Include="Actors\Priest.h" />
     <ClInclude Include="Actors\Quad.h" />
     <ClInclude Include="Actors\Components\Transform.h" />
@@ -147,6 +148,7 @@
     <ClInclude Include="Managers\ShaderManager.h" />
     <ClInclude Include="Managers\TimeManager.h" />
     <ClInclude Include="Render\Framebuffer.h" />
+    <ClInclude Include="Render\Shadowbuffer.h" />
     <ClInclude Include="Render\Vertex.h" />
   </ItemGroup>
   <ItemGroup>
@@ -158,6 +160,7 @@
     <ClCompile Include="Actors\Components\Transform.cpp" />
     <ClCompile Include="Actors\Lamp.cpp" />
     <ClCompile Include="Actors\Mushroom.cpp" />
+    <ClCompile Include="Actors\Platform.cpp" />
     <ClCompile Include="Actors\Priest.cpp" />
     <ClCompile Include="Actors\Quad.cpp" />
     <ClCompile Include="Core\InitGLEW.cpp" />

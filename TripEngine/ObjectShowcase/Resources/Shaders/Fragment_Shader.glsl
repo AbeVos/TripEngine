@@ -5,6 +5,7 @@ in vec2 uv;
 in vec3 normal;
 in vec3 viewDirection;
 in vec3 vertex;
+in vec4 lightSpacePosition;
 
 #define MAX_LIGHTS 10
 uniform int numLights = 1;
@@ -16,6 +17,8 @@ uniform struct Light
 
 uniform sampler2D textureDiffuse;
 uniform sampler2D textureNormal;
+uniform sampler2D shadowMap;
+uniform float maxDepth = 100.0 - 0.2;
 
 uniform vec4 light;
 uniform vec4 ambient;
@@ -47,13 +50,28 @@ vec3 applyLight(Light light)
 
 void main( void )
 {
-	vec3 linearColor = 0.5 * ambient.rgb;
+	vec3 projCoords = lightSpacePosition.xyz / lightSpacePosition.w;
+	projCoords = 0.5 * (projCoords + 1);
 
-	for(int i = 0; i < numLights; ++i)
+	float closestDepth = texture(shadowMap, projCoords.xy).r;
+	float currentDepth = projCoords.z - 0.001;
+
+	float attenuation = currentDepth > closestDepth  ? 0.0 : 1.0;
+
+	vec3 linearColor = attenuation * applyLight(lights[0]);
+
+	for(int i = 1; i < numLights; ++i)
 	{
 		linearColor += applyLight(lights[i]);
 	}
 
-	out_color = linearColor;
-	//out_color = texture(textureDiffuse, uv).rgb;
+	out_color = (linearColor + ambient.rgb) * texture(textureDiffuse, uv).rgb;
 }
+
+/*void main (void)
+{
+	//out_color = lightSpace;
+	float attenuation = texture(shadowMap, 0.5 * (lightSpace.xy + 1)).r;
+
+	out_color = vec3(lightSpace.z);
+}*/

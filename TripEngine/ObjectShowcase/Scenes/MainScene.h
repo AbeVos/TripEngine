@@ -12,6 +12,7 @@
 #include <TripEnginev2\Actors\Lamp.h>
 #include <TripEngineV2\Actors\Priest.h>
 #include <TripEnginev2\Actors\Mushroom.h>
+#include <TripEnginev2\Actors\Platform.h>
 #include <TripEnginev2\Actors\Quad.h>
 
 using namespace TripEngine;
@@ -24,6 +25,7 @@ namespace Scenes
 		Actors::CameraObject* camera;
 		Actors::Priest* priest;
 		Actors::Mushroom* mushroom;
+		Actors::Platform* platform;
 
 		Render::Framebuffer fbo1;
 		Render::Framebuffer fbo2;

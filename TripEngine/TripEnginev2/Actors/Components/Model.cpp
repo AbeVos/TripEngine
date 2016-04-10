@@ -50,13 +50,13 @@ Model::~Model()
 
 }
 
-void Model::Draw(const glm::vec4& ambientColor)
+void Model::Draw(const GLuint& shadowMap)
 {
 	glUseProgram(program);
 
 	glUniformMatrix4fv(glGetUniformLocation(program, "modelMatrix"), 1, false, &(*transform->GetTransformMatrix())[0][0]);
-	glUniformMatrix4fv(glGetUniformLocation(program, "VPMatrix"), 1, false, &(*VPMatrix)[0][0]);
-	//glUniformMatrix4fv(glGetUniformLocation(program, "lightMatrix"), 1, false, &(*lightMatrix)[0][0]);
+	glUniformMatrix4fv(glGetUniformLocation(program, "VPMatrix"), 1, false, &(*Managers::CameraManager::Current()->GetVPMatrix())[0][0]);
+	glUniformMatrix4fv(glGetUniformLocation(program, "lightMatrix"), 1, false, &(Managers::LightManager::GetLight(0)->GetLightMatrix())[0][0]);
 
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, textureDiffuse);
@@ -66,8 +66,12 @@ void Model::Draw(const glm::vec4& ambientColor)
 	glBindTexture(GL_TEXTURE_2D, textureNormal);
 	glUniform1i(glGetUniformLocation(program, "textureNormal"), 1);
 
+	glActiveTexture(GL_TEXTURE0 + 2);
+	glBindTexture(GL_TEXTURE_2D, shadowMap);
+	glUniform1i(glGetUniformLocation(program, "shadowMap"), 2);
+
 	glUniform3fv(glGetUniformLocation(program, "viewPosition"), 1, &Managers::CameraManager::Current()->GetTransform()->position[0]);
-	glUniform4fv(glGetUniformLocation(program, "ambient"), 1, &ambientColor[0]);
+	glUniform4fv(glGetUniformLocation(program, "ambient"), 1, &(*Managers::CameraManager::Current()->GetAmbientColor())[0]);
 
 	glUniform1i(glGetUniformLocation(program, "numLights"), Managers::LightManager::GetNumLights());
 
@@ -77,7 +81,7 @@ void Model::Draw(const glm::vec4& ambientColor)
 		ss1 << "lights[" << i << "].position";
 		std::string uniformName = ss1.str();
 
-		glm::vec4 light = glm::vec4(Managers::LightManager::GetLight(i)->GetTransform()->position, Managers::LightManager::GetLight(i)->type);
+		glm::vec4 light = glm::vec4(Managers::LightManager::GetLight(i)->GetLightDirection(), Managers::LightManager::GetLight(i)->type);
 		glUniform4fv(glGetUniformLocation(program, uniformName.c_str()), 1, &light[0]);
 
 		std::ostringstream ss2;
@@ -86,6 +90,18 @@ void Model::Draw(const glm::vec4& ambientColor)
 
 		glUniform3fv(glGetUniformLocation(program, uniformName.c_str()), 1, &Managers::LightManager::GetLight(i)->color[0]);
 	}
+
+	glBindVertexArray(vao);
+
+	glDrawArrays(GL_TRIANGLES, 0, numVertices);
+}
+
+void Model::DrawDepth()
+{
+	glUseProgram(program);
+
+	glUniformMatrix4fv(glGetUniformLocation(program, "modelMatrix"), 1, false, &(*transform->GetTransformMatrix())[0][0]);
+	glUniformMatrix4fv(glGetUniformLocation(program, "VPMatrix"), 1, false, &(Managers::LightManager::GetLight(0)->GetLightMatrix())[0][0]);
 
 	glBindVertexArray(vao);
 

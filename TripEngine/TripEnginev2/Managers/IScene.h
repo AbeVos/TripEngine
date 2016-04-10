@@ -9,9 +9,6 @@ namespace TripEngine
 	{
 		class IScene
 		{
-		protected:
-			glm::vec4 *ambientColor;
-
 		public:
 			virtual void Update() = 0;
 			virtual void Draw() = 0;

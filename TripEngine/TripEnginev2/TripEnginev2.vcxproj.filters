@@ -111,6 +111,12 @@
     <ClInclude Include="Actors\Mushroom.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Render\Shadowbuffer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Actors\Platform.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core\InitGLEW.cpp">
@@ -183,6 +189,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Actors\Mushroom.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Actors\Platform.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

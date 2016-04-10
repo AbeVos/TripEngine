@@ -5,8 +5,6 @@ using namespace Scenes;
 
 MainScene::MainScene()
 {
-	ambientColor = new glm::vec4(0.1, 0.2, 0.05, 1.0);
-
 	Managers::SceneManager::Init();
 	Managers::ShaderManager::CreateProgram("StdMat", "Resources\\Shaders\\Vertex_Shader.glsl", "Resources\\Shaders\\Fragment_Shader.glsl");
 
@@ -16,7 +14,7 @@ MainScene::MainScene()
 	Managers::CameraManager::SetCurrent((Camera*)camera->GetComponent(ct_Camera));
 
 	Actors::Lamp* lamp = new Actors::Lamp();
-	lamp->GetTransform()->position = glm::vec3(1, 5, 3);
+	lamp->GetTransform()->rotation = glm::vec3(-0.8f, 1.0f, 0);
 	lamp->SetColor(glm::vec3(1, 0.8f, 0.5f));
 	lamp->SetType(0);
 
@@ -28,9 +26,11 @@ MainScene::MainScene()
 	priest = new Actors::Priest();
 	priest->GetTransform()->rotation = glm::vec3(0, 2.5f, 0);
 
-	//mushroom = new Actors::Mushroom();
-	//mushroom->GetTransform()->position = glm::vec3(-1, 0, -2);
-	//mushroom->GetTransform()->scale = glm::vec3(4, 4, 4);
+	mushroom = new Actors::Mushroom();
+	mushroom->GetTransform()->position = glm::vec3(1, 0, -2);
+	mushroom->GetTransform()->scale = glm::vec3(4, 4, 4);
+
+	platform = new Actors::Platform();
 
 	fbo1 = Render::Framebuffer();
 	fbo1.Create(800, 600);
@@ -42,7 +42,6 @@ MainScene::MainScene()
 
 MainScene::~MainScene()
 {
-	delete ambientColor;
 	delete camera;
 	delete priest;
 	delete mushroom;
@@ -52,33 +51,39 @@ MainScene::~MainScene()
 
 void MainScene::Update()
 {
+	float time = Managers::TimeManager::time();
+
+	camera->GetTransform()->position = glm::vec3(2 * glm::cos(0.5f * time), 1, 2 * glm::sin(0.5f * time));
+	camera->GetTransform()->rotation.y = -0.5 * (time - 3.1415f);
 	priest->GetTransform()->rotation.y += Managers::TimeManager::delta();
-	//mushroom->GetTransform()->scale.y = 4 + 0.2f * glm::sin(5 * Managers::TimeManager::time());
+	mushroom->GetTransform()->scale.y = 4 + 0.2f * glm::sin(5 * Managers::TimeManager::time());
 }
 
 void MainScene::Draw()
 {
-	glCullFace(GL_FRONT);
-	glCullFace(GL_BACK);
+	glm::vec3* ambient = Managers::CameraManager::Current()->GetAmbientColor();
 
-	fbo1.Bind();
+	fbo1.Bind();	//	TODO: Make a shadowbuffer for this bit.
 	{
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-		glClearColor(ambientColor->r, ambientColor->g, ambientColor->b, ambientColor->a);
 
-		Managers::ModelManager::Draw(*ambientColor);
+		//glCullFace(GL_FRONT);
+		Managers::ModelManager::DrawDepth();
+		glCullFace(GL_BACK);
 	}
 	fbo1.Unbind();
 
 	fbo2.Bind();
 	{
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-		quad->Draw(fbo1.GetColorTexture(), fbo1.GetDepthTexture(), 0, 800, 600);
+		glClearColor(ambient->r, ambient->g, ambient->b, 1);
+
+		Managers::ModelManager::Draw(fbo1.GetDepthTexture());
 	}
 	fbo2.Unbind();
 
 	{
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-		quad->Draw(fbo2.GetColorTexture(), fbo2.GetDepthTexture(), 1, 800, 600);
+		quad->Draw(fbo2.GetColorTexture(), fbo2.GetDepthTexture(), 0, 800, 600);
 	}
 }

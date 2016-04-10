@@ -13,11 +13,14 @@ Camera::Camera(Transform* transform) : Component(transform)
 	fov = 45.0f;
 	nearClipPlane = 0.1f;
 	farClipPlane = 1000.0f;
+
+	ambientColor = new glm::vec3(0.1f, 0.2f, 0.05f);
 }
 
 Camera::~Camera()
 {
-
+	delete VPMatrix;
+	delete ambientColor;
 }
 
 void Camera::CalculateVPMatrix()
@@ -29,4 +32,9 @@ glm::mat4* Camera::GetVPMatrix()
 {
 	CalculateVPMatrix();
 	return VPMatrix;
+}
+
+glm::vec3* Camera::GetAmbientColor()
+{
+	return ambientColor;
 }
